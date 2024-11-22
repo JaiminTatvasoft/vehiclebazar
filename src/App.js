@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import Header from "./component/Header";
-import Footer from "./component/Footer";
 
 function App() {
   return (
     <div className="app">
-      <div className="text-darkestGreen p-6">
+      {/* <div className="text-darkestGreen p-6">
         <h1 className="font-poppins text-5xl">
           VEHICLE_BAZAR_MANAGEMENT_SYSTEM
         </h1>
@@ -19,12 +18,12 @@ function App() {
         <p className="font-arial text-xl text-lightGreen">
           VEHICLE_BAZAR_MANAGEMENT_SYSTEM
         </p>
-      </div>
+      </div> */}
       <Header />
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
