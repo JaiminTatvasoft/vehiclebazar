@@ -1,29 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import i20 from "../images/i20.png";
+import toyata from "../images/toyata.png";
+import vintage from "../images/luxury.png";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = ["../images/i20", "../images/i20", "../images/i20"];
+  const images = [toyata, i20, vintage];
 
-  // Function to cycle images for carousel
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   useEffect(() => {
-    const interval = setInterval(nextImage, 3000); // Change image every 3 seconds
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, [nextImage]);
+    const interval = setInterval(nextImage, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container mt-24 mx-auto py-12 px-6 lg:px-12">
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between space-y-12 lg:space-y-0">
+      <div className="flex flex-col lg:flex-row items-center justify-between space-y-12 lg:space-y-0">
         {/* Left Section (Carousel) */}
         <div className="lg:w-1/2 w-full">
-          <div className="relative w-full h-80 md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg shadow-lg">
-            <img
-              src="../images/i20"
-              alt={`carousel image ${currentIndex + 1}`}
-              className="w-full h-full object-cover transition-all duration-500"
-            />
+          <div className="relative w-full h-80 md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg">
+            <div
+              className="absolute inset-0 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${currentIndex * 100}%)`,
+              }}
+            >
+              <div className="flex">
+                {images.map((image, index) => (
+                  <div key={index} className="w-full h-full flex-shrink-0">
+                    <img
+                      src={image}
+                      alt={`Car ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
