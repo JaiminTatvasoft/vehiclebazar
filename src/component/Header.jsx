@@ -13,14 +13,11 @@ const Header = () => {
     <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="max-w-screen-xl mx-auto flex items-center py-4 px-6">
         {/* Hamburger Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="p-2 bg-lightGreen rounded-md"
-        >
+        <button onClick={toggleMenu} className="p-2 rounded-md">
           {isMenuOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-darkestGreen"
+              className="h-9 w-9 text-black"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -33,7 +30,7 @@ const Header = () => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-darkestGreen"
+              className="h-9 w-9 text-black"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -60,25 +57,25 @@ const Header = () => {
         <nav className="hidden md:flex space-x-6 items-center flex-grow justify-end me-8">
           <Link
             to="/"
-            className="text-mediumGreen hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold"
           >
             Home
           </Link>
           <Link
             to="/explore-cars"
-            className="text-mediumGreen hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold"
           >
             Explore Cars
           </Link>
           <Link
             to="/service"
-            className="text-mediumGreen hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold"
           >
             Service
           </Link>
           <Link
             to="/contact"
-            className="text-mediumGreen hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold"
           >
             Contact
           </Link>
@@ -87,27 +84,29 @@ const Header = () => {
         {/* Login Button (Far Right) */}
         <div className="flex items-center space-x-4 ml-auto">
           <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM12 14c-4.418 0-8 2.682-8 6s3.582 6 8 6 8-2.682 8-6-3.582-6-8-6z"></path>
-            </svg>
+            <Link to="/login" className="flex items-center space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM12 14c-4.418 0-8 2.682-8 6s3.582 6 8 6 8-2.682 8-6-3.582-6-8-6z"></path>
+              </svg>
 
-            <span>Login</span>
+              <span>Login</span>
+            </Link>
           </button>
         </div>
       </div>
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-16 left-0 right-0 bottom-0 max-w-64 bg-white z-40 transition-transform transform ${
+        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 bg-white z-40 transition-transform transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
