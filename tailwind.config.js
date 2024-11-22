@@ -32,6 +32,7 @@ module.exports = withMT({
         mediumGreen: "#80AF81",
         darkGreen: "#508D4E",
         darkestGreen: "#1A5319",
+        textcolor: "#343434",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

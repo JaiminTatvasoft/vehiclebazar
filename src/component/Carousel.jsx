@@ -21,7 +21,7 @@ const Carousel = () => {
           <div className="relative w-full h-80 md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg shadow-lg">
             <img
               src="../images/i20"
-              alt={`carousel image ${currentIndex + 1}`}
+              alt={`Car ${currentIndex + 1}`}
               className="w-full h-full object-cover transition-all duration-500"
             />
           </div>
