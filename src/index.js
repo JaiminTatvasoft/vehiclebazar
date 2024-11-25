@@ -9,6 +9,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import RentCar from "./pages/RentCar";
 
 const appRouter = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const appRouter = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/rentcar",
+        element: <RentCar />,
+        // children: [{ path: "/", element: <Body /> }],
       },
     ],
   },

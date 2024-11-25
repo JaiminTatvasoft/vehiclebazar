@@ -62,7 +62,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to="/explore-cars"
+            to="/rentcar"
             className="text-black hover:text-darkGreen font-semibold"
           >
             Explore Cars
@@ -116,7 +116,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to="/explore-cars"
+            to="/rentcar"
             className="block text-darkestGreen"
             onClick={toggleMenu}
           >

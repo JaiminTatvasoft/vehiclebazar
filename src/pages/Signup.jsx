@@ -40,7 +40,7 @@ const Signup = () => {
   return (
     <>
       <div className="min-h-screen bg-white flex justify-center items-center py-10">
-        <div className="min-h-full bg-lightGreen p-6 w-full max-w-4xl rounded-lg shadow-lg flex flex-col">
+        <div className="min-h-full bg-gradient-to-r from-white via-lightGreen to-mediumGreen p-6 w-full max-w-4xl rounded-lg shadow-lg flex flex-col">
           {step === 1 && <UserTypeSelection onSelect={handleUserTypeSelect} />}
           {step > 1 && (
             <div className="flex flex-col md:flex-row w-full">

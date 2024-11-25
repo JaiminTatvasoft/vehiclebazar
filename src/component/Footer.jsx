@@ -66,7 +66,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-textcolor hover:text-black hover:underline"
-                    to="/explore-cars"
+                    to="/rentcar"
                   >
                     Explore Cars
                   </Link>
