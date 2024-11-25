@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-screen-xl mx-auto flex items-center py-4 px-6">
+      <div className="max-w-screen-xl mx-auto flex items-center py-4 ">
         {/* Hamburger Menu Button */}
         <button onClick={toggleMenu} className="p-2 rounded-md">
           {isMenuOpen ? (

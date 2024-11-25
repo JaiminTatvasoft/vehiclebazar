@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
     },
   ];
   return (
-    <div className="flex item-center justify-center bg-slate-100">
+    <div className="flex item-center justify-center bg-gray-50">
       <div class="my-10 relative w-full max-w-full">
         <p className="flex items-center justify-center font-poppins font-bold text-4xl">
           WHY CHOOSE US?

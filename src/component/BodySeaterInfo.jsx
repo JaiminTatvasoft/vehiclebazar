@@ -5,8 +5,7 @@ const BodySeaterInfo = () => {
         <div
           class="absolute w-full h-full top-0 left-0 bg-cover bg-center bg-no-repeat  bg-fixed"
           style={{
-            backgroundImage:
-              "url(https://d1pnnwteuly8z3.cloudfront.net/images/dafc1e05-b0e8-4c6d-b375-4a62333bbd5a/71fe09e2-9320-4f61-8eca-067243e2ef68.jpeg)",
+            backgroundImage: `url(${require("../assets/multiple-cars.png")})`,
           }}
         ></div>
         <p className="relative py-10 flex items-center justify-center font-poppins font-bold text-white text-4xl">
@@ -20,8 +19,8 @@ const BodySeaterInfo = () => {
               alt="Sunset in the mountains"
             />
             <div class="px-6 py-4">
-              <div class="font-bold  text-xl mb-2 z-10 font-poppins">
-                4 Seater Vehicle Options
+              <div class="font-bold  text-xl mb-2 z-10 font-poppins text-center">
+                4/5 Seater Vehicle Options
               </div>
               <p class=" text-base z-10">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -49,7 +48,7 @@ const BodySeaterInfo = () => {
               alt="Sunset in the mountains"
             />
             <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2 font-poppins">
+              <div class="font-bold text-xl mb-2 font-poppins text-center">
                 7 Seater Vehicle Options
               </div>
               <p class="text-gray-700 text-base">

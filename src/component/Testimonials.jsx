@@ -1,81 +1,85 @@
 const Testimonials = () => {
   const features = [
     {
-      title: "Flexible timings",
+      title: "Abhay",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "4 Seater Vehicle Options",
+      title: "Vaibhav",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "Affordable Pricing",
+      title: "Jayesh",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "Experienced Drivers",
+      title: "Saurabh",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "24/7 Support",
+      title: "Vishal",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "24/7 Support",
+      title: "Siddharth",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "24/7 Support",
+      title: "Siddharth",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
     {
-      title: "24/7 Support",
+      title: "Siddharth",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      image: require("../assets/avatar.png"),
     },
   ];
   return (
-    <div className="flex item-center justify-center bg-black">
-      <div class="my-10 relative w-full max-w-full">
-        <p className="flex items-center justify-center font-poppins font-bold text-4xl text-white">
+    <div className="flex item-center justify-center bg-black py-10">
+      <div class="relative w-full max-w-7xl">
+        <p className="flex items-center justify-center font-poppins font-bold text-4xl text-white mb-5">
           WHAT PEOPLE SAY ABOUT US?
         </p>
         <img
-          className="flex items-center justify-center mx-auto w-32 h-20"
+          className="mx-auto w-32 h-20 mb-5"
           src={require("../assets/review.png")}
         />
-        <div className="mx-28 my-10 flex gap-6 justify-center overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        <div className="mx-auto flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide ">
           {features.map((feature, index) => (
             <div
               key={index}
-              class="min-w-[320px] snap-center bg-white shadow-md flex-1"
+              class="min-w-[320px] snap-center bg-white shadow-md rounded-lg p-2 cursor-pointer"
             >
-              <img
-                class="flex items-center mx-auto pt-5 rounded-full size-[120px]"
-                src={feature.image}
-                alt="Sunset in the mountains"
-              />
-              <div class="px-6 py-4">
-                <div class="flex items-center justify-center font-bold text-xl mb-2">
+              <div class="flex items-center">
+                <img
+                  class="w-20 h-20 rounded-full"
+                  src={feature.image}
+                  alt="Sunset in the mountains"
+                />
+
+                <div class="text-center font-bold text-xl font-poppins text-darkGreen">
                   {feature.title}
                 </div>
-                <p class="text-gray-700 text-base">{feature.description}</p>
               </div>
+
+              <p class="text-gray-700 text-base text-center">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>

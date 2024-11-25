@@ -26,7 +26,7 @@ const RecentTrips = () => {
     },
   ];
   return (
-    <div class="flex items-center justify-center bg-slate-100">
+    <div class="flex items-center justify-center bg-gray-50">
       <div class="my-10 mx-28 relative w-full max-w-full">
         <p className="flex items-center justify-center font-poppins font-bold text-4xl">
           RECENT EXCITING TRIPS

@@ -24,10 +24,6 @@ const appRouter = createBrowserRouter([
         path: "/signup",
         element: <Signup />,
       },
-      {
-        index: true,
-        element: <Home />,
-      },
     ],
   },
 ]);

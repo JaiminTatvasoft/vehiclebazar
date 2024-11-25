@@ -27,7 +27,7 @@ const Footer = () => {
 
             {/* Quick Links Section */}
             <div className="">
-              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
+              <h3 className="text-xl font-semibold text-darkGreen mb-4 font-poppins">
                 Quick links
               </h3>
               <ul className="">
@@ -76,7 +76,7 @@ const Footer = () => {
 
             {/* Get In Touch Section */}
             <div className="">
-              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
+              <h3 className="text-xl font-semibold mb-4 font-poppins text-darkGreen">
                 Get In Touch
               </h3>
               <div className="flex items-center mb-3">
@@ -199,7 +199,7 @@ const Footer = () => {
               </Link>{" "}
               |
               <Link
-                className="hover:text-textcolor hover:underline"
+                className="hover:text-textcolor hover:underline pl-2"
                 to="/privacy"
               >
                 Privacy Policy
