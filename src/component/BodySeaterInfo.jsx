@@ -1,7 +1,7 @@
 const BodySeaterInfo = () => {
   return (
     <>
-      <div class="  realtive relative w-full max-w-full">
+      <div class="realtive relative w-full max-w-full">
         <div
           class="absolute w-full h-full top-0 left-0 bg-cover bg-center bg-no-repeat  bg-fixed"
           style={{
