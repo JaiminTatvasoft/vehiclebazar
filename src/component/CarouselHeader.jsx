@@ -1,171 +1,90 @@
 import React, { useState, useEffect } from "react";
+import SearchBox from "./SearchBox";
 
 const CarouselHeader = () => {
-  const slides = [
-    {
-      src: require("../images/i20.png"),
-      alt: "Slide 1",
-      caption:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
-    },
-    {
-      src: require("../images/toyata.png"),
-      alt: "Slide 2",
-      caption:
-        "482548754275642486 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
-    },
-    {
-      src: require("../images/vintage.png"),
-      alt: "Slide 3",
-      caption:
-        "87687426785786466 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
-    },
+  const backgroundImages = [
+    require("../assets/carousel1.jpg"),
+    require("../assets/carousel2.jpg"),
+    require("../assets/carousel3.jpg"),
+    require("../assets/carousel4.jpg"),
+    require("../assets/carousel5.jpg"),
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const titles = [
+    "Self Drive Car Rental from Rs 60/hr",
+    "Multiple Delivery Options on Self Drive Car Rental",
+    "Flexible Kms options",
+    "Brand New Fleets",
+    "24*7 Call Center assistance",
+  ];
+
+  const descriptions = [
+    "Wide range of Hatchbacks, Sedans and SUV’s with multiple fuel and transmission options",
+    "Get your car delivered at Doorstep, Airport, Hub or nearest SPOC location as per your convenience.",
+    "Freedom to choose between 120 kms, 300 kms and Unlimited kms as per your travel needs.",
+    "Drive our latest car models. Average age of our fleet is 20 months.",
+    "Dedicated 24*7 Call Center for your trip assistance",
+  ];
+
+  const [currentBackground, setCurrentBackground] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000); // 3000ms = 3 seconds
+      setCurrentBackground(
+        (prevBackground) => (prevBackground + 1) % backgroundImages.length
+      );
+    }, 3000); // Change background every 3 seconds
 
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, [slides.length]);
-
-  const handleRentNowClick = () => {
-    console.log("came ");
-  };
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [backgroundImages.length]);
 
   return (
-    <div className="max-w-screen bg-slate-100 pb-5 pt-24">
-      <div
-        className="relative overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${require("../assets/carousel-bkg.png")})`,
-        }}
-      >
-        {/* Slides */}
-        <div className="relative h-80 m-10">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute flex gap-6 inset-0 transition-opacity duration-700 pb-5 m-5 ${
-                index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-            >
-              <img
-                className="flex-1 object-contain w-full h-full rounded-lg"
-                src={slide.src}
-                alt={slide.alt}
-              />
-              <div className="flex-1">
-                <p className="flex items-center justify-center font-poppins font-bold text-darkGreen text-3xl">
-                  Book Your Favourite Car And Drive It
-                </p>
-                <p className="flex-1 font-poppins mt-10">
-                  Whether you’re planning a road trip outside the city or
-                  looking for a convenient way to cruise around when you’re out
-                  of town,{" "}
-                  <span className="text-darkGreen font-bold">
-                    {" "}
-                    Vehicle-Bazar
-                  </span>{" "}
-                  is here to ease your travel and rent your favourite car.
-                </p>
-              </div>
-            </div>
-          ))}
-          <button
-            className="relative m-10 top-2/3 left-3/4 transform -translate-x-1/2 bg-darkGreen text-white font-semibold py-4 px-8 rounded-3xl shadow-lg z-20  hover:bg-darkestGreen  cursor-pointer"
-            onClick={handleRentNowClick}
-          >
-            Rent Now
-          </button>
+    <div className="max-w-screen h-screen bg-slate-100 pb-5 relative">
+      {/* Background Carousel with Smooth Fade Transition */}
+      <div className="absolute inset-0">
+        <div
+          className="transition-opacity duration-1000 ease-in-out"
+          style={{
+            backgroundImage: `url(${backgroundImages[currentBackground]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            height: "100%",
+            opacity: 1,
+          }}
+        ></div>
+      </div>
+
+      {/* Content Over Background */}
+      <div className="relative z-10 flex flex-col justify-start items-start h-full text-white">
+        <div className="flex flex-col md:flex-row gap-6 items-start ms-36 mt-48">
+          <SearchBox /> {/* Add the search box component */}
         </div>
 
-        {/* Indicators */}
-        <div className="flex absolute bottom-5 left-1/2 transform -translate-x-1/2 space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition ${
-                index === currentSlide
-                  ? "bg-blue-500"
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-            ></button>
-          ))}
+        {/* Title and Description Below SearchBox */}
+        <div className="mt-36 ms-44 max-w-3xl text-black">
+          <h1 className="text-5xl font-bold mb-2">
+            {titles[currentBackground]}
+          </h1>
+          <p className="text-lg mt-6">{descriptions[currentBackground]}</p>
         </div>
+      </div>
+
+      {/* Dot Indicators for Background */}
+      <div className="absolute bottom-10 left-0 transform translate-x-10 flex space-x-2 z-20">
+        {backgroundImages.map((_, index) => (
+          <div
+            key={index}
+            onClick={() => setCurrentBackground(index)} // Option to manually change background
+            className={`transition-all duration-500 ${
+              index === currentBackground
+                ? "w-8 mt-0.5 h-2 rounded-full bg-blue-500" // Active indicator (small line with smooth transition)
+                : "w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400" // Inactive dots
+            }`}
+          ></div>
+        ))}
       </div>
     </div>
   );
 };
-// <div className="max-w-screen bg-slate-100 pb-5 pt-24">
-//   <div
-//     className="relative overflow-hidden bg-cover bg-center"
-//     style={{
-//       backgroundImage: `url(${require("../assets/carousel-bkg.png")})`,
-//     }}
-//   >
-//     {/* Slides */}
-//     <div className="relative h-80 md:h-96 lg:h-[500px] m-5">
-//       {slides.map((slide, index) => (
-//         <div
-//           key={index}
-//           className={`absolute flex flex-col md:flex-row gap-6 inset-0 transition-opacity duration-700 p-5 ${
-//             index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-//           }`}
-//         >
-//           {/* Image Section */}
-//           <img
-//             className="flex-1 object-cover w-full h-48 md:h-full rounded-lg"
-//             src={slide.src}
-//             alt={slide.alt}
-//           />
-//           {/* Text Section */}
-//           <div className="flex-1 text-center md:text-left">
-//             <p className="font-poppins font-bold text-darkGreen text-xl md:text-2xl lg:text-3xl">
-//               Book Your Favourite Car And Drive It
-//             </p>
-//             <p className="mt-4 text-sm md:text-base lg:text-lg">
-//               Whether you’re planning a road trip outside the city or
-//               looking for a convenient way to cruise around when you’re out
-//               of town,{" "}
-//               <span className="text-darkGreen font-bold">
-//                 Vehicle-Bazar
-//               </span>{" "}
-//               is here to ease your travel and rent your favourite car.
-//             </p>
-//           </div>
-//         </div>
-//       ))}
-//       {/* Button */}
-//       <button
-//         className="relative top-2/3 left-1/2 transform -translate-x-1/2 md:left-3/4 bg-darkGreen text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-3xl shadow-lg z-20 hover:bg-darkestGreen cursor-pointer"
-//         onClick={handleRentNowClick}
-//       >
-//         Rent Now
-//       </button>
-//     </div>
-
-//     {/* Indicators */}
-//     <div className="flex absolute bottom-5 left-1/2 transform -translate-x-1/2 space-x-2">
-//       {slides.map((_, index) => (
-//         <button
-//           key={index}
-//           type="button"
-//           onClick={() => setCurrentSlide(index)}
-//           className={`w-3 h-3 rounded-full transition ${
-//             index === currentSlide
-//               ? "bg-blue-500"
-//               : "bg-gray-300 hover:bg-gray-400"
-//           }`}
-//         ></button>
-//       ))}
-//     </div>
-//   </div>
-// </div>
 
 export default CarouselHeader;

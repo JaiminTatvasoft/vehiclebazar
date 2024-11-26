@@ -1,18 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  // Function to toggle menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Function to track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      // If page is scrolled more than 50px, set header background to white
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Add event listener for scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-screen-xl mx-auto flex items-center py-4 ">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-screen-xl mx-auto flex items-center py-4">
         {/* Hamburger Menu Button */}
-        <button onClick={toggleMenu} className="p-2 rounded-md">
+        <button onClick={toggleMenu} className="p-2 rounded-md md:hidden">
           {isMenuOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,36 +79,40 @@ const Header = () => {
         </Link>
 
         {/* Navbar Links (Desktop) */}
-        <nav className="hidden md:flex space-x-6 items-center flex-grow justify-end me-8">
+        <nav className="hidden md:flex space-x-6 items-center flex-grow justify-center me-8">
           <Link
             to="/"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold relative group text-lg"
           >
             Home
+            <span className="absolute left-1/2 bottom-0 w-0 h-1 bg-darkGreen transition-all duration-300 ease-out transform -translate-x-1/2 group-hover:w-full"></span>
           </Link>
           <Link
             to="/explore-cars"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold relative group text-lg"
           >
             Explore Cars
+            <span className="absolute left-1/2 bottom-0 w-0 h-1 bg-darkGreen transition-all duration-300 ease-out transform -translate-x-1/2 group-hover:w-full"></span>
           </Link>
           <Link
             to="/service"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold relative group text-lg"
           >
             Service
+            <span className="absolute left-1/2 bottom-0 w-0 h-1 bg-darkGreen transition-all duration-300 ease-out transform -translate-x-1/2 group-hover:w-full"></span>
           </Link>
           <Link
             to="/contact"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold relative group text-lg"
           >
             Contact
+            <span className="absolute left-1/2 bottom-0 w-0 h-1 bg-darkGreen transition-all duration-300 ease-out transform -translate-x-1/2 group-hover:w-full"></span>
           </Link>
         </nav>
 
         {/* Login Button (Far Right) */}
         <div className="flex items-center space-x-4 ml-auto">
-          <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
+          <button className="bg-darkGreen text-white hover:bg-darkestGreen px-4 py-2 rounded flex items-center space-x-2">
             <Link to="/login" className="flex items-center space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -135,15 +165,6 @@ const Header = () => {
           >
             Contact
           </Link>
-          {/* <li>
-            <Link
-              to="/faq"
-              className="block text-darkestGreen"
-              onClick={toggleMenu}
-            >
-              FAQs
-            </Link>
-          </li> */}
         </ul>
       </div>
     </header>
