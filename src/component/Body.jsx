@@ -1,17 +1,17 @@
-import BodySeaterInfo from "./BodySeaterInfo";
-import CarouselHeader from "./CarouselHeader";
+import Carousel from "./Carousel";
 import FrequentRides from "./FrequentRides";
-import RecentTrips from "./RecentTrips";
+import HowToBook from "./HowToBook";
+import PartnerComponent from "./PartnerComponent";
 import Testimonials from "./Testimonials";
 import WhyChooseUs from "./WhyChooseUs";
 
 const Body = () => {
   return (
     <div>
-      <CarouselHeader />
-      <BodySeaterInfo />
-      <RecentTrips />
+      <Carousel />
+      <PartnerComponent />
       <FrequentRides />
+      <HowToBook />
       <WhyChooseUs />
       <Testimonials />
     </div>

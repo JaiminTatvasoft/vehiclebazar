@@ -13,11 +13,16 @@ module.exports = {
         customBounce: "customBounce 1.5s infinite", // Define the animation name, duration, and repeat
       },
       colors: {
+        bgGreen: "#dcfce7",
         lightGreen: "#D6EFD8",
         mediumGreen: "#80AF81",
         darkGreen: "#508D4E",
         darkestGreen: "#1A5319",
         textcolor: "#343434",
+        grey: "#F9F9FA",
+        bgLightblue: "#F7F8FC",
+        textLightColor: "#8c84a4",
+        bgGrey: "FAFAFA",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

@@ -1,58 +1,77 @@
 const FrequentRides = () => {
   const features = [
     {
-      title: "4 Seater Vehicle Options",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "Baleno",
+      description: "Maruti Suzuki",
+      image: require("../assets/baleno.png"),
     },
     {
-      title: "4 Seater Vehicle Options",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "Innova",
+      description: "Toyota",
+      image: require("../assets/innova.png"),
     },
     {
-      title: "4 Seater Vehicle Options",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "innova",
+      description: "toyota",
+      image: require("../assets/innova-1.png"),
     },
     {
-      title: "4 Seater Vehicle Options",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "Swift",
+      description: "Maruti Suzuki",
+      image: require("../assets/swift.png"),
+    },
+    {
+      title: "Car Name",
+      description: "Brand Name",
+      image: require("../assets/swift.png"),
+    },
+    {
+      title: "Car Name",
+      description: "Brand Name",
+      image: require("../assets/swift.png"),
+    },
+    {
+      title: "Car Name",
+      description: "Brand Name",
+      image: require("../assets/swift.png"),
+    },
+    {
+      title: "Car Name",
+      description: "Brand Name",
+      image: require("../assets/swift.png"),
     },
   ];
   return (
-    <div class="flex items-center justify-center">
-      <div class="realtive relative w-full max-w-full">
-        <div
-          class="absolute w-full h-full top-0 left-0 bg-cover bg-center bg-no-repeat  bg-fixed"
-          style={{
-            backgroundImage:
-              "url(https://d1pnnwteuly8z3.cloudfront.net/images/dafc1e05-b0e8-4c6d-b375-4a62333bbd5a/71fe09e2-9320-4f61-8eca-067243e2ef68.jpeg)",
-          }}
-        ></div>
-
-        <p className="mt-10 relative flex items-center justify-center font-poppins font-bold text-white text-4xl">
-          MOST TRAVELLED VEHICLE
+    <div class="flex items-center justify-center ">
+      <div class="my-24 mx-28 relative w-full max-w-7xl">
+        <p className="flex items-center justify-center font-poppins font-bold text-4xl">
+          Most Rented Models
         </p>
-        <div class="mx-28 my-10 flex gap-6 z-10">
+        <div class="my-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
           {features.map((feature, index) => (
             <div
               key={index}
-              class="min-w-[320px] snap-center bg-white shadow-md z-10"
+              class="min-w-[320px] snap-center bg-white shadow-md z-0 rounded-lg border-4 border-solid"
             >
-              <img
-                class="flex items-center mx-auto w-80 pt-5 px-5"
-                src={feature.image}
-                alt="Sunset in the mountains"
-              />
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">{feature.title}</div>
-                <p class="text-gray-700 text-base">{feature.description}</p>
+              <div className="flex items-center justify-center p-5">
+                <img
+                  className="w-full h-48 object-cover rounded-t-lg transition-transform duration-200 ease-in-out hover:brightness-50 cursor-pointer"
+                  src={feature.image}
+                  alt="Sunset in the mountains"
+                />
+              </div>
+              <div class="px-6 py-4 bg-gray-100 rounded-b-lg">
+                <div className="flex items-center font-bold justify-between">
+                  <p class=" font-poppins text-darkGreen">
+                    {feature.description}
+                  </p>
+                  <div class="font-bold text-xl font-poppins text-darkGreen">
+                    {feature.title}
+                  </div>
+                </div>
+                <button class="pt-2 text-base flex flex-end text-darkGreen">
+                  More-Details
+                </button>
               </div>
             </div>
           ))}

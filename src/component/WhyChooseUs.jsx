@@ -3,74 +3,75 @@ const WhyChooseUs = () => {
     {
       title: "Flexible timings",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+        "You decide whether you'd like to rent a car for an hour, a week, a month, or on a daily basis.",
+      image: require("../assets/flexible-time.png"),
     },
     {
-      title: "4 Seater Vehicle Options",
+      title: "Several options",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+        "Pick from our wide range of classy hatchbacks, comfortable sedans, and spacious SUVs.",
+      image: require("../assets/options.png"),
     },
     {
       title: "Affordable Pricing",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      image: require("../assets/price.png"),
     },
     {
       title: "Experienced Drivers",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      image: require("../assets/driver.png"),
     },
     {
       title: "24/7 Support",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      image: require("../assets/support.png"),
     },
     {
-      title: "24/7 Support",
+      title: "All-India Permits",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+        "Our cars come with an All-India Tourist Permit so that you can drive from Kashmir to",
+      image: require("../assets/permit.png"),
     },
     {
-      title: "24/7 Support",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "Best Price Gaurantee",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      image: require("../assets/price-gaurantee.png"),
     },
     {
-      title: "24/7 Support",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      image: require("../assets/bkg-img-1.jpg"),
+      title: "Multi-payment options",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      image: require("../assets/payment-options.png"),
     },
   ];
   return (
-    <div className="flex item-center justify-center bg-gray-50">
-      <div class="my-10 relative w-full max-w-full">
-        <p className="flex items-center justify-center font-poppins font-bold text-4xl">
-          WHY CHOOSE US?
+    <div className="flex item-center justify-center bg-grey">
+      <div class="relative my-20 max-w-7xl">
+        <p className="pb-4 flex items-center justify-center font-poppins font-bold text-4xl">
+          Why choose us?
         </p>
-        <div className="mx-28 my-10 flex gap-6 justify-center overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        <p className="flex items-center justify-center text-center font-poppins text-sm text-textLightColor">
+          Our users of self-drive cars in multiple cities are sending us tons of
+          happy faces and we love them
+        </p>
+        <div className="pt-10 pb-10 mx-auto flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide ">
           {features.map((feature, index) => (
             <div
               key={index}
-              class="min-w-[320px] snap-center bg-white shadow-md flex-1"
+              class="min-w-[320px] snap-center bg-white shadow-md flex-1 rounded-lg cursor-pointer bg-gradient-to-b from-white to-bgGreen"
             >
               <img
-                class="flex items-center mx-auto w-52 pt-5 h-32 rounded-lg"
+                class="flex items-center mx-auto w-48 pt-5 h-40 "
                 src={feature.image}
                 alt="Sunset in the mountains"
               />
               <div class="px-6 py-4">
-                <div class="flex items-center justify-center font-bold text-xl mb-2">
+                <div class="flex items-center justify-center font-bold text-xl mb-2 font-poppins text-darkGreen">
                   {feature.title}
                 </div>
-                <p class="text-gray-700 text-base">{feature.description}</p>
+                <p class="text-black font-poppins font-light text-center">
+                  {feature.description}
+                </p>
               </div>
             </div>
           ))}

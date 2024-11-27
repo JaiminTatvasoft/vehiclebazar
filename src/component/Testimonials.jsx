@@ -50,13 +50,13 @@ const Testimonials = () => {
     },
   ];
   return (
-    <div className="flex item-center justify-center bg-black py-10">
+    <div className="flex item-center justify-center bg-black py-20">
       <div class="relative w-full max-w-7xl">
         <p className="flex items-center justify-center font-poppins font-bold text-4xl text-white mb-5">
-          WHAT PEOPLE SAY ABOUT US?
+          What People Say About Us?
         </p>
         <img
-          className="mx-auto w-32 h-20 mb-5"
+          className="mx-auto w-32 h-20 my-8"
           src={require("../assets/review.png")}
         />
         <div className="mx-auto flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide ">
