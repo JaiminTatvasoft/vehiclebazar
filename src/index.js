@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "./component/Body";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import RentCar from "./pages/RentCar";
+import BookCar from "./component/BookCar";
 
 const appRouter = createBrowserRouter([
   {
@@ -22,6 +24,16 @@ const appRouter = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/rentcar",
+        element: <RentCar />,
+        // children: [{ path: "/", element: <Body /> }],
+      },
+      {
+        path: "/bookcar",
+        element: <BookCar />,
+        // children: [{ path: "/", element: <Body /> }],
       },
     ],
   },

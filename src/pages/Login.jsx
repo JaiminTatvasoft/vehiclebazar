@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="bg-lightGreen p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <div className="bg-gradient-to-r from-white via-lightGreen to-mediumGreen p-8 rounded-lg shadow-lg w-full max-w-sm">
           <h2 className="text-2xl font-poppins font-semibold text-darkGreen text-center mb-6">
             Login
           </h2>

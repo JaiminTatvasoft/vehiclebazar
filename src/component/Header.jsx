@@ -69,7 +69,7 @@ const Header = ({ isScrolled }) => {
             Home
           </Link>
           <Link
-            to="/explore-cars"
+            to="/rentcar"
             className="text-black hover:text-darkGreen font-semibold"
           >
             Explore Cars
@@ -89,7 +89,7 @@ const Header = ({ isScrolled }) => {
         </nav>
 
         {/* Login Button (Far Right) */}
-        <div className="flex items-center space-x-4 ml-auto">
+        <div className="flex font-arial items-center space-x-4 ml-auto">
           <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
             <Link to="/login" className="flex items-center space-x-2">
               <svg
@@ -113,7 +113,7 @@ const Header = ({ isScrolled }) => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 bg-white z-40 transition-transform transform ${
+        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 bg-white z-1000 transition-transform transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -123,7 +123,7 @@ const Header = ({ isScrolled }) => {
             Home
           </Link>
           <Link
-            to="/explore-cars"
+            to="/rentcar"
             className="block text-darkestGreen"
             onClick={toggleMenu}
           >
