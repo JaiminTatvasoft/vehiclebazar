@@ -8,27 +8,27 @@ const Footer = () => {
         <div className="max-w-full mx-auto px-48">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* About Section */}
-            <div className="">
+            <div className="text-white">
               <div className="mb-4">
-                <img src="" alt="Add Logo" className="w-32" />
+                <img src={require("../assets/avatar.png")} alt="Add Logo" className="w-10" />
               </div>
-              <div className="text-lg mt-5 text-textcolor font-poppins">
+              <div className="text-lg mt-5 text-white font-poppins">
                 Find Your{" "}
-                <span className="text-darkestGreen font-bold">Dream </span> Car
+                <span className="text-black text-xl font-extrabold">Dream </span> Car
                 Today
                 <br />
                 Explore our wide range of vehicles that{" "}
-                <span className="text-white font-bold">fit </span> your needs.{" "}
-                <span className="text-white font-bold">Start </span>
+                <span className="text-black text-xl font-extrabold">fit </span> your needs.{" "}
+                <span className="text-black text-xl font-extrabold">Start </span>
                 your journey now!
               </div>
               <div className="flex mt-8 flex-wrap items-center justify-between">
                 <div className="flex space-x-8">
                   <Link
                     to="https://www.facebook.com/tatvasoft"
-                    className="text-darkGreen"
+                    className="text-white"
                   >
-                    <div className="border border-gray-400 hover:bg-lightGreen rounded-full p-2">
+                    <div className="border border-gray-400 hover:bg-gray-500 rounded-full p-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -43,9 +43,9 @@ const Footer = () => {
 
                   <Link
                     to="https://twitter.com/tatvasoft"
-                    className="text-darkGreen"
+                    className="text-white"
                   >
-                    <div className="border border-gray-400 hover:bg-lightGreen rounded-full p-2">
+                    <div className="border border-gray-400 hover:bg-gray-500 rounded-full p-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -63,13 +63,13 @@ const Footer = () => {
 
             {/* About Section */}
             <div className="sm:ms-20">
-              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
+              <h3 className="text-xl font-semibold text-white mb-4 font-poppins">
                 About
               </h3>
               <ul className="">
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/deals"
                   >
                     Deals
@@ -77,7 +77,7 @@ const Footer = () => {
                 </li>
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/contact"
                   >
                     Contact
@@ -85,7 +85,7 @@ const Footer = () => {
                 </li>
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/faqs"
                   >
                     FAQs
@@ -93,7 +93,7 @@ const Footer = () => {
                 </li>
                 {/* <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-textcolor hover:text-black"
                     to="/faq"
                   >
                     FAQs
@@ -101,7 +101,7 @@ const Footer = () => {
                 </li> */}
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/termsandcondition"
                   >
                     Terms and Condition
@@ -118,7 +118,7 @@ const Footer = () => {
               <ul className="">
                 <li className="mt-4">
                   <Link
-                    className="text-white hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/"
                   >
                     Home
@@ -126,7 +126,7 @@ const Footer = () => {
                 </li>
                 <li className="mt-4">
                   <Link
-                    className="text-white hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/about"
                   >
                     About
@@ -134,7 +134,7 @@ const Footer = () => {
                 </li>
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/blog"
                   >
                     Blogs
@@ -142,7 +142,7 @@ const Footer = () => {
                 </li>
                 {/* <li>
                   <Link
-                    className="text-white hover:text-black hover:underline"
+                    className="text-white hover:text-black"
                     to="/faq"
                   >
                     FAQs
@@ -150,7 +150,7 @@ const Footer = () => {
                 </li> */}
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-gray-300"
                     to="/sitemap"
                   >
                     Sitemap
@@ -181,7 +181,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-white hover:text-black hover:underline"
+                  className="text-white hover:text-gray-300"
                   to="tel:9601421472"
                 >
                   +91-9601421472
@@ -204,7 +204,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-white hover:text-black hover:underline"
+                  className="text-white hover:text-gray-300"
                   to="mailto:info@tatvasoft.com"
                 >
                   info@tatvasoft.com
@@ -227,7 +227,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-white hover:text-black hover:underline"
+                  className="text-white hover:text-gray-300"
                   target="_blank"
                   rel="noopener noreferrer"
                   to="https://maps.app.goo.gl/f2n2g5mR5W2YXXcA8"
@@ -245,7 +245,7 @@ const Footer = () => {
           <div className="mt-10">
             {/* Copyright Section */}
             <div className="flex justify-between items-center mt-5 border-t border-gray-300 pt-4">
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-white">
                 &copy; 2024{" "}
                 <span className="font-semibold">[Company Name]</span>. All
                 rights reserved.
@@ -260,9 +260,9 @@ const Footer = () => {
                   className="flex items-center"
                 >
                   <img
-                    src="/_next/static/media/playstore.a7ef70fe.svg"
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                     alt="Playstore"
-                    className="w-24"
+                    className="w-36"
                   />
                 </a>
                 <a
@@ -272,9 +272,9 @@ const Footer = () => {
                   className="flex items-center"
                 >
                   <img
-                    src="/_next/static/media/apple_store.35cc9699.svg"
+                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                     alt="Appstore"
-                    className="w-24"
+                    className="w-36"
                   />
                 </a>
               </div>

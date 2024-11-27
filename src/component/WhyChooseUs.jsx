@@ -58,7 +58,7 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              class="min-w-[320px] snap-center bg-white shadow-md flex-1 rounded-lg cursor-pointer bg-gradient-to-b from-white to-bgGreen"
+              class="min-w-[320px] snap-center bg-white shadow-md flex-1 rounded-lg cursor-pointer bg-gradient-to-b from-white to-bgGreen transition-transform duration-200 ease-in-out transform hover:scale-105 cursor-pointer"
             >
               <img
                 class="flex items-center mx-auto w-48 pt-5 h-40 "

@@ -27,7 +27,7 @@ const BenefitsOfRentingCar = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="min-w-[320px] snap-center shadow-md z-0 rounded-lg bg-gradient-to-b from-white to-bgGreen"
+              className="min-w-[320px] snap-center shadow-md z-0 rounded-lg bg-gradient-to-b from-white to-bgGreen transition-transform duration-200 ease-in-out transform hover:scale-105 cursor-pointer"
             >
               <div className="flex gap-4 items-center justify-center py-12 px-2">
                 <img
