@@ -20,7 +20,7 @@ const HowToBook = () => {
         </p>
         <img
           className="pt-5 max-w-full"
-          src={require("../assets/image.png")}
+          src={require("../assets/flow.jpg")}
           alt=""
         />
       </div>

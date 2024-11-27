@@ -42,7 +42,7 @@ const FrequentRides = () => {
     },
   ];
   return (
-    <div class="flex items-center justify-center ">
+    <div class="flex items-center justify-center bg-gray-50">
       <div class="my-24 mx-28 relative w-full max-w-7xl">
         <p className="flex items-center justify-center font-poppins font-bold text-4xl">
           Most Rented Models

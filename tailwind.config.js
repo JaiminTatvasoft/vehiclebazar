@@ -22,7 +22,12 @@ module.exports = {
         grey: "#F9F9FA",
         bgLightblue: "#F7F8FC",
         textLightColor: "#8c84a4",
-        bgGrey: "FAFAFA",
+        bgGrey: "#FAFAFA",
+        bgLightGray: "#F9F9FA",
+        bgPink: "#ffcad3",
+        bgGrien: "#d5f7d9",
+        bgBlue: "#deeffa",
+        bgDarkGray: "#e4e4ea",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

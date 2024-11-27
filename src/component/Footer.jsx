@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <div className="bg-gray-50 py-10">
+      <div className="bg-green-700 py-32">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* About Section */}
@@ -12,28 +12,26 @@ const Footer = () => {
               <div className="mb-4">
                 <img src="" alt="Add Logo" className="w-32" />
               </div>
-              <div className="text-lg text-textcolor font-poppins">
-                Find Your{" "}
-                <span className="text-darkestGreen font-bold">Dream </span> Car
-                Today
+              <div className="text-lg text-white font-poppins">
+                Find Your <span className="text-white font-bold">Dream </span>{" "}
+                Car Today
                 <br />
                 Explore our wide range of vehicles that{" "}
-                <span className="text-darkestGreen font-bold">fit </span> your
-                needs.{" "}
-                <span className="text-darkestGreen font-bold">Start </span>
+                <span className="text-white font-bold">fit </span> your needs.{" "}
+                <span className="text-white font-bold">Start </span>
                 your journey now!
               </div>
             </div>
 
             {/* Quick Links Section */}
             <div className="">
-              <h3 className="text-xl font-semibold text-darkGreen mb-4 font-poppins">
+              <h3 className="text-xl font-semibold text-white mb-4 font-poppins">
                 Quick links
               </h3>
               <ul className="">
                 <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/"
                   >
                     Home
@@ -41,7 +39,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/about"
                   >
                     About
@@ -49,7 +47,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/contact"
                   >
                     Contact
@@ -57,7 +55,7 @@ const Footer = () => {
                 </li>
                 {/* <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/faq"
                   >
                     FAQs
@@ -65,7 +63,7 @@ const Footer = () => {
                 </li> */}
                 <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/explore-cars"
                   >
                     Explore Cars
@@ -76,7 +74,7 @@ const Footer = () => {
 
             {/* Get In Touch Section */}
             <div className="">
-              <h3 className="text-xl font-semibold mb-4 font-poppins text-darkGreen">
+              <h3 className="text-xl font-semibold mb-4 font-poppins text-white">
                 Get In Touch
               </h3>
               <div className="flex items-center mb-3">
@@ -85,7 +83,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="mobile-screen"
-                  className="svg-inline--fa fa-mobile-screen text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-mobile-screen text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -96,7 +94,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   to="tel:9601421472"
                 >
                   +91-9601421472
@@ -108,7 +106,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="envelope"
-                  className="svg-inline--fa fa-envelope text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-envelope text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -119,7 +117,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   to="mailto:info@tatvasoft.com"
                 >
                   info@tatvasoft.com
@@ -131,7 +129,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="location-dot"
-                  className="svg-inline--fa fa-location-dot text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-location-dot text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -142,7 +140,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                   to="https://maps.app.goo.gl/f2n2g5mR5W2YXXcA8"
@@ -162,7 +160,7 @@ const Footer = () => {
               <div className="flex space-x-4">
                 <Link
                   to="https://www.facebook.com/tatvasoft"
-                  className="text-darkGreen hover:text-mediumGreen"
+                  className="text-white hover:text-mediumGreen"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +174,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   to="https://twitter.com/tatvasoft"
-                  className="text-darkGreen hover:text-mediumGreen"
+                  className="text-white hover:text-mediumGreen"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -191,21 +189,15 @@ const Footer = () => {
               </div>
             </div>
             <div className="text-center text-sm mt-5 font-poppins">
-              <Link
-                className="hover:text-textcolor hover:underline"
-                to="/terms"
-              >
+              <Link className="text-white hover:underline" to="/terms">
                 Terms of Service
               </Link>{" "}
               |
-              <Link
-                className="hover:text-textcolor hover:underline pl-2"
-                to="/privacy"
-              >
+              <Link className="text-white hover:underline pl-2" to="/privacy">
                 Privacy Policy
               </Link>
             </div>
-            <div className="text-center mt-4 text-xs text-textcolor font-poppins">
+            <div className="text-center mt-4 text-xs text-white font-poppins">
               <p>&copy; 2024 [Company Name]. All rights reserved.</p>
             </div>
           </div>
