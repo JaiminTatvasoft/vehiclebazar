@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <div className="bg-gray-50 py-10">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="bg-green-700 py-32 text-white">
+        <div className="max-w-full mx-auto px-48">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* About Section */}
             <div className="">
               <div className="mb-4">
                 <img src="" alt="Add Logo" className="w-32" />
               </div>
-              <div className="text-lg text-textcolor font-poppins">
+              <div className="text-lg mt-5 text-textcolor font-poppins">
                 Find Your{" "}
                 <span className="text-darkestGreen font-bold">Dream </span> Car
                 Today
@@ -23,36 +23,73 @@ const Footer = () => {
                 <span className="text-darkestGreen font-bold">Start </span>
                 your journey now!
               </div>
+              <div className="flex mt-8 flex-wrap items-center justify-between">
+                <div className="flex space-x-8">
+                  <Link
+                    to="https://www.facebook.com/tatvasoft"
+                    className="text-darkGreen"
+                  >
+                    <div className="border border-gray-400 hover:bg-lightGreen rounded-full p-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        viewBox="0 0 1024 1024"
+                      >
+                        <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-32 736H663.9V602.2h104l15.6-120.7H663.9v-77.1c0-35 9.7-58.8 59.8-58.8h63.9v-108c-11.1-1.5-49-4.8-93.2-4.8-92.2 0-155.3 56.3-155.3 159.6v89H434.9v120.7h104.3V848H176V176h672v672z"></path>
+                      </svg>
+                    </div>
+                  </Link>
+
+                  <Link
+                    to="https://twitter.com/tatvasoft"
+                    className="text-darkGreen"
+                  >
+                    <div className="border border-gray-400 hover:bg-lightGreen rounded-full p-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        viewBox="0 0 1024 1024"
+                      >
+                        <path d="M1024 196.1c-37.7 16.7-78.1 28-120.4 33.1 43.2-25.8 76.3-66.7 92.4-116.5-40.3 23.9-84.9 41.1-131.6 50.6-38.1-40.7-92.7-66.2-153.8-66.2-116.6 0-211.5 94.9-211.5 211.5 0 16.6 1.9 32.8 5.3 48.3-175.7-8.8-331.5-93.1-435.6-221.8-18.2 31.3-28.5 67.6-28.5 106.2 0 73.4 37.4 138.4 94.2 176.3-34.6-1.1-67.2-10.5-95.8-26.3v2.7c0 102.5 73 188.7 169.3 208.7-17.7 4.8-36.4 7.4-55.6 7.4-13.5 0-26.6-1.3-39.4-3.7 26.8 83.7 104.4 144.6 196.3 146.6-72.4 56.6-163.5 90.3-262.7 90.3-17 0-33.8-1-50.4-3.1 93.6 60.1 205.3 95.1 325.7 95.1 391.2 0 605.6-323.6 605.6-604.3 0-9.2-.1-18.4-.3-27.5z"></path>
+                      </svg>
+                    </div>
+                  </Link>
+                </div>
+              </div>
             </div>
 
-            {/* Quick Links Section */}
-            <div className="">
+            {/* About Section */}
+            <div className="sm:ms-20">
               <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
-                Quick links
+                About
               </h3>
               <ul className="">
-                <li>
+                <li className="mt-4">
                   <Link
                     className="text-textcolor hover:text-black hover:underline"
-                    to="/"
+                    to="/deals"
                   >
-                    Home
+                    Deals
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="text-textcolor hover:text-black hover:underline"
-                    to="/about"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
+                <li className="mt-4">
                   <Link
                     className="text-textcolor hover:text-black hover:underline"
                     to="/contact"
                   >
                     Contact
+                  </Link>
+                </li>
+                <li className="mt-4">
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/faqs"
+                  >
+                    FAQs
                   </Link>
                 </li>
                 {/* <li>
@@ -63,12 +100,61 @@ const Footer = () => {
                     FAQs
                   </Link>
                 </li> */}
-                <li>
+                <li className="mt-4">
                   <Link
                     className="text-textcolor hover:text-black hover:underline"
-                    to="/rentcar"
+                    to="/termsandcondition"
                   >
-                    Explore Cars
+                    Terms and Condition
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Helpful Links Section */}
+            <div className="">
+              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
+                Helpful Links
+              </h3>
+              <ul className="">
+                <li className="mt-4">
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="mt-4">
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/about"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li className="mt-4">
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/blog"
+                  >
+                    Blogs
+                  </Link>
+                </li>
+                {/* <li>
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/faq"
+                  >
+                    FAQs
+                  </Link>
+                </li> */}
+                <li className="mt-4">
+                  <Link
+                    className="text-textcolor hover:text-black hover:underline"
+                    to="/sitemap"
+                  >
+                    Sitemap
                   </Link>
                 </li>
               </ul>
@@ -79,7 +165,7 @@ const Footer = () => {
               <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
                 Get In Touch
               </h3>
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -102,7 +188,7 @@ const Footer = () => {
                   +91-9601421472
                 </Link>
               </div>
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -158,55 +244,41 @@ const Footer = () => {
 
           {/* Footer Bottom Section */}
           <div className="mt-10">
-            <div className="flex flex-wrap items-center justify-between">
-              <div className="flex space-x-4">
-                <Link
-                  to="https://www.facebook.com/tatvasoft"
-                  className="text-darkGreen hover:text-mediumGreen"
+            {/* Copyright Section */}
+            <div className="flex justify-between items-center mt-5 border-t border-gray-300 pt-4">
+              <p className="text-sm text-gray-700">
+                &copy; 2024{" "}
+                <span className="font-semibold">[Company Name]</span>. All
+                rights reserved.
+              </p>
+
+              {/* Store Links (Play Store and App Store) */}
+              <div className="flex gap-4">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://play.google.com/store/apps/details?id=com.mychoize.cars&referrer=utm_source%3Dwebsite%26utm_medium%3Dtop_bar%26utm_term%3Dapp%26utm_campaign%3Ddownload&pli=1"
+                  className="flex items-center"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 1024 1024"
-                  >
-                    <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-32 736H663.9V602.2h104l15.6-120.7H663.9v-77.1c0-35 9.7-58.8 59.8-58.8h63.9v-108c-11.1-1.5-49-4.8-93.2-4.8-92.2 0-155.3 56.3-155.3 159.6v89H434.9v120.7h104.3V848H176V176h672v672z"></path>
-                  </svg>
-                </Link>
-                <Link
-                  to="https://twitter.com/tatvasoft"
-                  className="text-darkGreen hover:text-mediumGreen"
+                  <img
+                    src="/_next/static/media/playstore.a7ef70fe.svg"
+                    alt="Playstore"
+                    className="w-24"
+                  />
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://apps.apple.com/us/app/mychoize-self-drive-car-rental/id1287913070?ls=1"
+                  className="flex items-center"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 1024 1024"
-                  >
-                    <path d="M1024 196.1c-37.7 16.7-78.1 28-120.4 33.1 43.2-25.8 76.3-66.7 92.4-116.5-40.3 23.9-84.9 41.1-131.6 50.6-38.1-40.7-92.7-66.2-153.8-66.2-116.6 0-211.5 94.9-211.5 211.5 0 16.6 1.9 32.8 5.3 48.3-175.7-8.8-331.5-93.1-435.6-221.8-18.2 31.3-28.5 67.6-28.5 106.2 0 73.4 37.4 138.4 94.2 176.3-34.6-1.1-67.2-10.5-95.8-26.3v2.7c0 102.5 73 188.7 169.3 208.7-17.7 4.8-36.4 7.4-55.6 7.4-13.5 0-26.6-1.3-39.4-3.7 26.8 83.7 104.4 144.6 196.3 146.6-72.4 56.6-163.5 90.3-262.7 90.3-17 0-33.8-1-50.4-3.1 93.6 60.1 205.3 95.1 325.7 95.1 391.2 0 605.6-323.6 605.6-604.3 0-9.2-.1-18.4-.3-27.5z"></path>
-                  </svg>
-                </Link>
+                  <img
+                    src="/_next/static/media/apple_store.35cc9699.svg"
+                    alt="Appstore"
+                    className="w-24"
+                  />
+                </a>
               </div>
-            </div>
-            <div className="text-center text-sm mt-5 font-poppins">
-              <Link
-                className="hover:text-textcolor hover:underline"
-                to="/terms"
-              >
-                Terms of Service
-              </Link>{" "}
-              |
-              <Link
-                className="hover:text-textcolor hover:underline"
-                to="/privacy"
-              >
-                Privacy Policy
-              </Link>
-            </div>
-            <div className="text-center mt-4 text-xs text-textcolor font-poppins">
-              <p>&copy; 2024 [Company Name]. All rights reserved.</p>
             </div>
           </div>
         </div>

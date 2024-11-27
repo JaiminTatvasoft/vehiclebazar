@@ -36,10 +36,10 @@ const SearchBox = () => {
   }, []);
 
   return (
-    <div className="fixed z-50 left-1/2 transform -translate-x-1/2 w-full px-4 py-3 shadow-lg bg-gradient-to-r from-white via-mediumGreen to-lightgreen">
-      <div className="max-w-6xl mx-auto flex items-center gap-6 w-full">
+    <div className="fixed left-1/2 transform -translate-x-1/2 w-full px-48 py-3 shadow-lg bg-gray-300">
+      <div className="w-full mx-auto flex items-center gap-6 flex-wrap sm:flex-nowrap">
         {/* Location Dropdown */}
-        <div className="flex-1 min-w-[220px]">
+        <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="location"
             className="block text-textcolor font-semibold text-sm mb-2"
@@ -51,7 +51,7 @@ const SearchBox = () => {
             name="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full px-4 py-3 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
+            className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           >
             <option value="">Select a city</option>
             {locations.map((city, index) => (
@@ -63,7 +63,7 @@ const SearchBox = () => {
         </div>
 
         {/* Pickup Date & Time */}
-        <div className="flex-1 min-w-[220px]">
+        <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="pickupDate"
             className="block text-textcolor font-semibold text-sm mb-2"
@@ -77,12 +77,12 @@ const SearchBox = () => {
             min={formatDateTime(currentDateTime)}
             value={pickupDateTime}
             onChange={handlePickupDateChange}
-            className="w-full px-4 py-3 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
+            className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           />
         </div>
 
         {/* Return Date & Time */}
-        <div className="flex-1 min-w-[220px]">
+        <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="returnDate"
             className="block text-textcolor font-semibold text-sm mb-2"
@@ -96,17 +96,20 @@ const SearchBox = () => {
             min={pickupDateTime || formatDateTime(currentDateTime)} // Ensure return date is after pickup date
             value={returnDateTime}
             onChange={handleReturnDateChange}
-            className="w-full px-4 py-3 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
+            className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           />
         </div>
 
         {/* Search Button */}
-        <button className="bg-darkGreen text-white px-6 py-3 rounded-lg shadow-md hover:bg-darkestGreen focus:outline-none focus:ring-2 focus:ring-darkGreen disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300">
-          Search Vehicles
-        </button>
+        <div className="font-arial flex-1 min-w-[150px] flex flex-col justify-end items-end">
+          <button className="bg-darkGreen text-white px-6 py-3 mt-6 rounded-lg shadow-md hover:bg-darkestGreen focus:outline-none focus:ring-2 focus:ring-darkGreen disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 self-end">
+            Search Vehicles
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default SearchBox;
+  
