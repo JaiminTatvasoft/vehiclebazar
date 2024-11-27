@@ -5,10 +5,8 @@ import ReactDOM from "react-dom/client";
 import Error from "./component/Error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "./component/Body";
-import { ThemeProvider } from "@material-tailwind/react";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
 import RentCar from "./pages/RentCar";
 import BookCar from "./component/BookCar";
 
@@ -22,16 +20,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
-        // children: [{ path: "/", element: <Body /> }],
       },
       {
         path: "/signup",
         element: <Signup />,
-        // children: [{ path: "/", element: <Body /> }],
-      },
-      {
-        index: true,
-        element: <Home />,
       },
       {
         path: "/rentcar",
@@ -50,11 +42,6 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={appRouter} />
-    </ThemeProvider>
+    <RouterProvider router={appRouter} />
   </React.StrictMode>
 );
-
-// <React.StrictMode>
-/* </React.StrictMode> */

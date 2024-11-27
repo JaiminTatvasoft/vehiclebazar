@@ -18,9 +18,8 @@ const Footer = () => {
                 Today
                 <br />
                 Explore our wide range of vehicles that{" "}
-                <span className="text-darkestGreen font-bold">fit </span> your
-                needs.{" "}
-                <span className="text-darkestGreen font-bold">Start </span>
+                <span className="text-white font-bold">fit </span> your needs.{" "}
+                <span className="text-white font-bold">Start </span>
                 your journey now!
               </div>
               <div className="flex mt-8 flex-wrap items-center justify-between">
@@ -113,13 +112,13 @@ const Footer = () => {
 
             {/* Helpful Links Section */}
             <div className="">
-              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
-                Helpful Links
+              <h3 className="text-xl font-semibold text-white mb-4 font-poppins">
+                Quick links
               </h3>
               <ul className="">
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/"
                   >
                     Home
@@ -127,7 +126,7 @@ const Footer = () => {
                 </li>
                 <li className="mt-4">
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/about"
                   >
                     About
@@ -143,7 +142,7 @@ const Footer = () => {
                 </li>
                 {/* <li>
                   <Link
-                    className="text-textcolor hover:text-black hover:underline"
+                    className="text-white hover:text-black hover:underline"
                     to="/faq"
                   >
                     FAQs
@@ -162,7 +161,7 @@ const Footer = () => {
 
             {/* Get In Touch Section */}
             <div className="">
-              <h3 className="text-xl font-semibold text-black mb-4 font-poppins">
+              <h3 className="text-xl font-semibold mb-4 font-poppins text-white">
                 Get In Touch
               </h3>
               <div className="flex items-center mb-4">
@@ -171,7 +170,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="mobile-screen"
-                  className="svg-inline--fa fa-mobile-screen text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-mobile-screen text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -182,7 +181,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   to="tel:9601421472"
                 >
                   +91-9601421472
@@ -194,7 +193,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="envelope"
-                  className="svg-inline--fa fa-envelope text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-envelope text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -205,7 +204,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   to="mailto:info@tatvasoft.com"
                 >
                   info@tatvasoft.com
@@ -217,7 +216,7 @@ const Footer = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="location-dot"
-                  className="svg-inline--fa fa-location-dot text-textcolor w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-location-dot text-white w-4 h-4 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -228,7 +227,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-textcolor hover:text-black hover:underline"
+                  className="text-white hover:text-black hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                   to="https://maps.app.goo.gl/f2n2g5mR5W2YXXcA8"
