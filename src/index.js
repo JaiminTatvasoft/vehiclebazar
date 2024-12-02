@@ -9,6 +9,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import RentCar from "./pages/RentCar";
 import BookCar from "./component/BookCar";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
+import { Provider } from "react-redux";
 
 const appRouter = createBrowserRouter([
   {
@@ -28,12 +31,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/rentcar",
         element: <RentCar />,
-        // children: [{ path: "/", element: <Body /> }],
       },
       {
         path: "/bookcar",
         element: <BookCar />,
-        // children: [{ path: "/", element: <Body /> }],
       },
     ],
   },
@@ -42,6 +43,10 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={appRouter} />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={appRouter} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
