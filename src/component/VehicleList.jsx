@@ -1,57 +1,19 @@
 import React from "react";
-import i20 from "../images/i20.png";
-import toyata from "../images/toyata.png";
-import luxury from "../images/luxury.png";
-import vintage from "../images/vintage.png";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VehicleList = () => {
-  const vehicles = [
-    {
-      id: 1,
-      name: "Tesla Model S",
-      brand: "Tesla",
-      price: "₹ 100",
-      description:
-        "Experience the future with this electric car that combines speed, luxury, and cutting-edge technology.",
-      imageUrl: i20,
-      features: ["Automatic", "Electric", "2 Baggage", "5 Seater"],
-    },
-    {
-      id: 2,
-      name: "BMW X5",
-      brand: "BMW",
-      price: "₹ 120",
-      description:
-        "A premium SUV with exceptional performance, luxury, and a sophisticated design.",
-      imageUrl: toyata,
-      features: ["Automatic", "Diesel", "2 Baggage", "5 Seater"],
-    },
-    {
-      id: 3,
-      name: "Ford Mustang",
-      brand: "Ford",
-      price: "₹ 80",
-      description:
-        "A classic American muscle car with bold styling and incredible power.",
-      imageUrl: luxury,
-      features: ["Manual", "Petrol", "2 Baggage", "4 Seater"],
-    },
-    {
-      id: 4,
-      name: "Audi A6",
-      brand: "Audi",
-      price: "₹ 110",
-      description:
-        "A luxury sedan with a stylish design, advanced technology, and premium comfort.",
-      imageUrl: vintage,
-      features: ["Automatic", "Petrol", "2 Baggage", "5 Seater"],
-    },
-  ];
+  const navigate = useNavigate();
+  const { vehicles, loading, error } = useSelector((state) => state.vehicles);
+
+  const handleClick = (name) => {
+    navigate("/bookcar", { state: { carname: name } });
+  };
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-28 ms-10">
       {vehicles.map((vehicle) => (
-        <div key={vehicle.id} className="bg-white border rounded-lg">
+        <div key={vehicle._id} className="bg-white border rounded-lg">
           {/* Vehicle Info Section with Image on the Left and Text on the Right */}
           <div className="flex">
             {/* Vehicle Image */}
@@ -67,10 +29,12 @@ const VehicleList = () => {
             <div className="flex-1 p-4">
               {/* Vehicle Name */}
               <h1 className="text-2xl font-semibold text-gray-800">
-                {vehicle.name}
+                {vehicle.carname}
               </h1>
               {/* Brand Name */}
-              <h4 className="text-sm text-gray-500 mb-4">{vehicle.brand}</h4>
+              <h4 className="text-sm text-gray-500 mb-4">
+                {vehicle.brandname}
+              </h4>
 
               <hr className="w-auto h-px border-0 bg-gray-500 mb-3" />
 
@@ -98,16 +62,28 @@ const VehicleList = () => {
           <div className="p-8">
             {/* Vehicle Features with SVG Icons */}
             <div className="flex justify-center items-center space-x-4">
-              {vehicle.features.map((feature, index) => (
-                <div
-                  className="flex items-center text-sm text-gray-700"
-                  key={index}
-                >
-                  {/* Dot representing the feature */}
-                  <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                  <p className="text-xs ml-2 mr-5">{feature}</p>
-                </div>
-              ))}
+              {/* {vehicle.features.map((feature, index) => ( */}
+              <div className="flex items-center text-sm text-gray-700">
+                {/* Dot representing the feature */}
+                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                <p className="text-xs ml-2 mr-5">{vehicle.transmission}</p>
+              </div>
+              <div className="flex items-center text-sm text-gray-700">
+                {/* Dot representing the feature */}
+                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                <p className="text-xs ml-2 mr-5">{vehicle.fuelType}</p>
+              </div>
+              <div className="flex items-center text-sm text-gray-700">
+                {/* Dot representing the feature */}
+                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                <p className="text-xs ml-2 mr-5">{vehicle.baggage} Baggage</p>
+              </div>
+              <div className="flex items-center text-sm text-gray-700">
+                {/* Dot representing the feature */}
+                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                <p className="text-xs ml-2 mr-5">{vehicle.seater} seater</p>
+              </div>
+              {/* ))} */}
             </div>
 
             {/* Additional Info */}
@@ -120,7 +96,10 @@ const VehicleList = () => {
               <button className="text-sm font-bold text-blue-500 hover:underline">
                 View Details
               </button>
-              <button className="font-arial bg-darkGreen text-white py-2 px-6 rounded-md hover:bg-darkestGreen transition-colors">
+              <button
+                className="font-arial bg-darkGreen text-white py-2 px-6 rounded-md hover:bg-darkestGreen transition-colors"
+                onClick={() => handleClick(vehicle.name)}
+              >
                 Book Now
               </button>
             </div>
