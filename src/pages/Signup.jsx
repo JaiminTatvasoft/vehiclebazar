@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import AccountInfo from "../component/AccountInfo";
-import UserTypeSelection from "../component/UserTypeSelection";
 import PersonalInfo from "../component/PersonalInfo";
 import AddressInfo from "../component/AddressInfo";
 import TermsCondition from "../component/TermsCondition";
 
 const Signup = () => {
-  const [step, setStep] = useState(1);
-  const [userType, setUserType] = useState("");
+  const [step, setStep] = useState(2);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,15 +15,9 @@ const Signup = () => {
     address: "",
     termsAccepted: false,
   });
-  console.log(userType);
 
   const handleNext = () => setStep(step + 1);
   const handlePrevious = () => setStep(step - 1);
-
-  const handleUserTypeSelect = (type) => {
-    setUserType(type);
-    setStep(2); // Move to the next step after selecting user type
-  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,49 +31,19 @@ const Signup = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white flex justify-center items-center py-10">
-        <div className="min-h-full bg-gradient-to-r from-white via-lightGreen to-mediumGreen p-6 w-full max-w-4xl rounded-lg shadow-lg flex flex-col">
-          {step === 1 && <UserTypeSelection onSelect={handleUserTypeSelect} />}
+      <div
+        className="min-h-screen bg-white flex justify-center items-center py-10  md:items-start md:justify-end"
+        style={{
+          backgroundImage: `url(${require("../assets/bglogin.jpg")})`, // Add your image path here
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="min-h-full bg-gradient-to-r mt-24 bg-white p-6 w-full max-w-md rounded-lg shadow-lg flex flex-col md:me-[15%]">
           {step > 1 && (
             <div className="flex flex-col md:flex-row w-full">
-              {/* Left Section with Tabs */}
-              <div className="w-full md:w-1/4 bg-darkGreen text-white p-4 rounded-t-lg md:rounded-l-lg space-y-6">
-                <button
-                  className={`w-full py-2 rounded-md ${
-                    step === 2 ? "bg-darkestGreen" : "bg-mediumGreen"
-                  }`}
-                  onClick={() => setStep(2)}
-                >
-                  Account Info
-                </button>
-                <button
-                  className={`w-full py-2 rounded-md ${
-                    step === 3 ? "bg-darkestGreen" : "bg-mediumGreen"
-                  }`}
-                  onClick={() => setStep(3)}
-                >
-                  Personal Info
-                </button>
-                <button
-                  className={`w-full py-2 rounded-md ${
-                    step === 4 ? "bg-darkestGreen" : "bg-mediumGreen"
-                  }`}
-                  onClick={() => setStep(4)}
-                >
-                  Address Info
-                </button>
-                <button
-                  className={`w-full py-2 rounded-md ${
-                    step === 5 ? "bg-darkestGreen" : "bg-mediumGreen"
-                  }`}
-                  onClick={() => setStep(5)}
-                >
-                  Terms & Conditions
-                </button>
-              </div>
-
               {/* Right Section (Form Content) */}
-              <div className="w-full md:w-3/4 p-6 space-y-6 md:space-y-4 flex flex-col justify-between">
+              <div className="w-full p-6 space-y-6 md:space-y-8 flex flex-col justify-between">
                 {step === 2 && (
                   <AccountInfo
                     formData={formData}
@@ -111,7 +73,7 @@ const Signup = () => {
                 <div className="flex justify-between mt-4">
                   {step < 6 && (
                     <button
-                      className="bg-darkGreen text-white px-4 py-2 rounded-md disabled:opacity-50"
+                      className="bg-green-700 text-white px-4 py-2 rounded-md disabled:opacity-50"
                       onClick={handlePrevious}
                       disabled={step === 2}
                     >
@@ -120,14 +82,14 @@ const Signup = () => {
                   )}
                   {step < 5 ? (
                     <button
-                      className="bg-darkGreen text-white px-4 py-2 rounded-md"
+                      className="bg-green-700 text-white px-4 py-2 rounded-md"
                       onClick={handleNext}
                     >
                       Next
                     </button>
                   ) : (
                     <button
-                      className="bg-darkGreen text-white px-4 py-2 rounded-md"
+                      className="bg-green-700 text-white px-4 py-2 rounded-md"
                       onClick={handleSubmit}
                     >
                       Submit

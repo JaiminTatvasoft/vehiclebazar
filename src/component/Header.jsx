@@ -14,7 +14,7 @@ const Header = ({ isScrolled }) => {
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-screen-xl mx-auto flex items-center py-4 ">
+      <div className="max-w-screen-3xl px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-4 ">
         {/* Hamburger Menu Button */}
         <button onClick={toggleMenu} className="p-2 rounded-md">
           {isMenuOpen ? (
@@ -61,35 +61,35 @@ const Header = ({ isScrolled }) => {
         </Link>
 
         {/* Navbar Links (Desktop) */}
-        <nav className="hidden md:flex space-x-6 items-center flex-grow justify-end me-8">
+        <nav className="hidden md:flex space-x-6 items-center flex-grow justify-center me-8">
           <Link
             to="/"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
           >
             Home
           </Link>
           <Link
-            to="/rentcar"
-            className="text-black hover:text-darkGreen font-semibold"
+            to="/explore-cars"
+            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
           >
             Explore Cars
           </Link>
           <Link
             to="/service"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
           >
             Service
           </Link>
           <Link
             to="/contact"
-            className="text-black hover:text-darkGreen font-semibold"
+            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
           >
             Contact
           </Link>
         </nav>
 
         {/* Login Button (Far Right) */}
-        <div className="flex font-arial items-center space-x-4 ml-auto">
+        <div className="flex items-center space-x-4 ml-auto">
           <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
             <Link to="/login" className="flex items-center space-x-2">
               <svg
@@ -113,9 +113,9 @@ const Header = ({ isScrolled }) => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 bg-white z-1000 transition-transform transform ${
+        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 z-40 transition-transform transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        } ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
       >
         {/* Menu Items */}
         <ul className="space-y-4 p-6">
@@ -123,7 +123,7 @@ const Header = ({ isScrolled }) => {
             Home
           </Link>
           <Link
-            to="/rentcar"
+            to="/explore-cars"
             className="block text-darkestGreen"
             onClick={toggleMenu}
           >

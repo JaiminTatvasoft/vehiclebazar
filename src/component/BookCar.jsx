@@ -2,11 +2,11 @@ import React from "react";
 
 const BookCar = () => {
   return (
-    <div className="mt-28 px-48">
+    <div className="mt-24 px-48">
       {/* Car Details Section */}
       <div className="flex flex-wrap lg:flex-nowrap">
         {/* Left Side - Car Image & Details */}
-        <div className="lg:w-2/3 w-full pr-4">
+        <div className="mt-10 mb-20 lg:w-2/3 w-full pr-4">
           {/* Car Header */}
           <div className="">
             <h1 className="text-2xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
@@ -177,7 +177,7 @@ const BookCar = () => {
         </div>
 
         {/* Right Side - Pickup and Drop Details */}
-        <div className="lg:w-1/3 w-full pl-4 mt-6 lg:mt-0">
+        <div className="mt-10 mb-20 lg:w-1/3 w-full pl-4">
           <div className="text-2xl font-bold">Car pickup & Drop location</div>
           <div className="bg-white mt-4 px-8 pb-8 rounded-lg shadow-lg mb-6">
             {/* Pickup Location */}

@@ -29,7 +29,7 @@ const Carousel = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [location, setLocation] = useState("indore");
+  const [location, setLocation] = useState("");
   const [pickUpDate, setPickUpDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
 
@@ -40,6 +40,18 @@ const Carousel = () => {
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [slides.length]);
+
+  // Function to handle Pickup Date validation (greater than or equal to current date)
+  const isPickUpDateValid = () => {
+    const currentDate = new Date();
+    const selectedPickUpDate = new Date(pickUpDate);
+    return selectedPickUpDate >= currentDate;
+  };
+
+  // Function to handle Return Date validation (greater than Pickup Date)
+  const isReturnDateValid = () => {
+    return new Date(returnDate) > new Date(pickUpDate);
+  };
 
   return (
     <div className="relative h-screen flex items-center justify-center">
@@ -57,17 +69,15 @@ const Carousel = () => {
                 src={slide.src}
                 alt={slide.alt}
               />
-              <div className="absolute inset-0 max-w-3xl h-40 m-40   shadow-lg rounded-lg overflow-hidden">
-                <div className="">
-                  <p className="w-1/2 flex-1 py-3 text-center font-semibold text-white bg-darkGreen rounded-tr-lg">
-                    Select your city to rent your favourite car
-                  </p>
-                </div>
-                <div className="p-6 bg-white">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 mt-36 lg:items-start lg:ms-[15%] lg:justify-start lg:mt-[7%]">
+                <p className="text-center text-black font-semibold text-lg lg:text-2xl 2xl:text-3xl mb-6">
+                  Select your city to rent your favourite car
+                </p>
+                <div className="w-full max-w-3xl bg-white bg-opacity-75 p-6 rounded-lg shadow-lg">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
                       <label
-                        className="block text-lg font-poppins font-extrabold text-darkGreen mb-1"
+                        className="block text-base 2xl:text-xl font-poppins font-extrabold text-darkGreen mb-1"
                         htmlFor="location"
                       >
                         Location
@@ -78,14 +88,14 @@ const Carousel = () => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       >
-                        <option>Add City</option>
-                        <option>Ahmedabad</option>
-                        <option>Rajkot</option>
+                        <option value="">Add City</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Rajkot">Rajkot</option>
                       </select>
                     </div>
                     <div>
                       <label
-                        className="block text-lg font-poppins font-extrabold text-darkGreen mb-1"
+                        className="block text-base 2xl:text-xl font-poppins font-extrabold text-darkGreen mb-1"
                         htmlFor="pickup-date"
                       >
                         Pick-Up Date
@@ -96,11 +106,13 @@ const Carousel = () => {
                         value={pickUpDate}
                         onChange={(e) => setPickUpDate(e.target.value)}
                         className="w-full px-3 py-2 border rounded-lg text-gray-700"
+                        disabled={!location} // Disable pickup date until city is selected
+                        min={new Date().toISOString().slice(0, 16)} // Set minimum date to current date
                       />
                     </div>
                     <div>
                       <label
-                        className="block text-lg font-poppins font-extrabold text-darkGreen mb-1"
+                        className="block text-base 2xl:text-xl font-poppins font-extrabold text-darkGreen mb-1"
                         htmlFor="return-date"
                       >
                         Return Date
@@ -111,10 +123,15 @@ const Carousel = () => {
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
                         className="w-full px-3 py-2 border rounded-lg text-gray-700"
+                        disabled={!pickUpDate} // Disable return date until pickup date is selected
+                        min={pickUpDate} // Set minimum return date to the pick-up date
                       />
                     </div>
-                    <div className="flex items-end">
-                      <button className="w-full bg-darkGreen text-white font-medium py-3 rounded-lg hover:bg-lightGreen">
+                    <div className="flex items-end justify-center md:justify-start">
+                      <button
+                        className="w-full bg-darkGreen text-white font-medium py-3 rounded-lg hover:bg-lightGreen"
+                        disabled={!isPickUpDateValid() || !isReturnDateValid()} // Disable the button if pick-up or return date is invalid
+                      >
                         Search
                       </button>
                     </div>

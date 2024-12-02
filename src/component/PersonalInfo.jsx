@@ -8,10 +8,11 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
   };
 
   return (
-    <div>
-      <h3 className="text-xl font-poppins font-semibold text-darkGreen mb-4">
+    <div className="mb-10">
+      <h3 className="text-xl font-poppins font-semibold text-darkGreen mb-10">
         Personal Info
       </h3>
+
       <div>
         <label
           htmlFor="name"
@@ -29,7 +30,8 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
           placeholder="Enter your name"
         />
       </div>
-      <div className="mt-4">
+
+      <div className="mt-8">
         <label
           htmlFor="dob"
           className="block text-sm text-darkGreen font-medium"
@@ -45,11 +47,33 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
         />
       </div>
+
       {formData.dob && (
         <p className="mt-4 text-sm text-darkGreen">
           Age: {calculateAge(formData.dob)} years
         </p>
       )}
+
+      <div className="mt-8">
+        <label
+          htmlFor="gender"
+          className="block text-sm text-darkGreen font-medium"
+        >
+          Gender
+        </label>
+        <select
+          name="gender"
+          id="gender"
+          value={formData.gender}
+          onChange={handleInputChange}
+          className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+        >
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
     </div>
   );
 };

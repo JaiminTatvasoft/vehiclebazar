@@ -57,7 +57,7 @@ const ComparisionInModeOfBuying = () => {
   ];
 
   return (
-    <div className=" bg-white">
+    <div className="bg-white">
       <div className="py-16 px-4 max-w-7xl mx-auto">
         <h2 className="text-center text-3xl font-bold mb-8 font-poppins pb-2">
           Rental Car Subscription V/S Buying a used car V/S Buying a new car

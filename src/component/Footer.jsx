@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <div className="bg-green-700 py-32 text-white">
-        <div className="max-w-full mx-auto px-48">
+      <div className="bg-green-700 pt-32 pb-16 text-white">
+        <div className="max-w-full px-10 sm:px-20 xl:px-48 mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* About Section */}
             <div className="text-white">
@@ -14,15 +14,15 @@ const Footer = () => {
               </div>
               <div className="text-lg mt-5 text-white font-poppins">
                 Find Your{" "}
-                <span className="text-black text-xl font-extrabold">Dream </span> Car
+                <span className="text-yellow-300 text-xl font-extrabold">Dream </span> Car
                 Today
                 <br />
                 Explore our wide range of vehicles that{" "}
-                <span className="text-black text-xl font-extrabold">fit </span> your needs.{" "}
-                <span className="text-black text-xl font-extrabold">Start </span>
+                <span className="text-yellow-300 text-xl font-extrabold">fit </span> your needs.{" "}
+                <span className="text-yellow-300 text-xl font-extrabold">Start </span>
                 your journey now!
               </div>
-              <div className="flex mt-8 flex-wrap items-center justify-between">
+              <div className="flex mt-8 flex-wrap items-center justify-center sm:justify-between">
                 <div className="flex space-x-8">
                   <Link
                     to="https://www.facebook.com/tatvasoft"
@@ -62,8 +62,8 @@ const Footer = () => {
             </div>
 
             {/* About Section */}
-            <div className="sm:ms-20">
-              <h3 className="text-xl font-semibold text-white mb-4 font-poppins">
+            <div className="lg:ms-20 text-center">
+              <h3 className="text-2xl font-semibold text-white mb-4 font-poppins">
                 About
               </h3>
               <ul className="">
@@ -111,8 +111,8 @@ const Footer = () => {
             </div>
 
             {/* Helpful Links Section */}
-            <div className="">
-              <h3 className="text-xl font-semibold text-white mb-4 font-poppins">
+            <div className="text-center">
+              <h3 className="text-2xl mt-4 sm:mt-0 font-semibold text-white mb-4 font-poppins">
                 Quick links
               </h3>
               <ul className="">
@@ -160,11 +160,11 @@ const Footer = () => {
             </div>
 
             {/* Get In Touch Section */}
-            <div className="">
-              <h3 className="text-xl font-semibold mb-4 font-poppins text-white">
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold mb-4 font-poppins text-white">
                 Get In Touch
               </h3>
-              <div className="flex items-center mb-4">
+              <div className="flex items-center justify-center mb-4 lg:justify-start">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -187,7 +187,7 @@ const Footer = () => {
                   +91-9601421472
                 </Link>
               </div>
-              <div className="flex items-center mb-4">
+              <div className="flex items-center justify-center mb-4  lg:justify-start">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -210,13 +210,13 @@ const Footer = () => {
                   info@tatvasoft.com
                 </Link>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center justify-center lg:justify-start">
                 <svg
                   aria-hidden="true"
                   focusable="false"
                   data-prefix="fas"
                   data-icon="location-dot"
-                  className="svg-inline--fa fa-location-dot text-white w-4 h-4 mr-3"
+                  className="svg-inline--fa fa-location-dot text-white w-5 h-5 lg:h-10 lg:w-10 2xl:w-5 2xl:h-5 mr-3"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -227,7 +227,7 @@ const Footer = () => {
                   ></path>
                 </svg>
                 <Link
-                  className="text-white hover:text-gray-300"
+                  className="text-white lg:text-start hover:text-gray-300"
                   target="_blank"
                   rel="noopener noreferrer"
                   to="https://maps.app.goo.gl/f2n2g5mR5W2YXXcA8"

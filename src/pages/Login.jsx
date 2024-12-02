@@ -2,18 +2,25 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-    const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="bg-gradient-to-r from-white via-lightGreen to-mediumGreen p-8 rounded-lg shadow-lg w-full max-w-sm">
-          <h2 className="text-2xl font-poppins font-semibold text-darkGreen text-center mb-6">
+      <div
+        className="flex items-center justify-center min-h-screen bg-white py-10 md:items-start md:justify-end"
+        style={{
+          backgroundImage: `url(${require("../assets/bglogin.jpg")})`, // Add your image path here
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="bg-gradient-to-r mt-24 bg-white p-8 rounded-lg shadow-lg w-full max-w-md md:me-[15%]">
+          <h2 className="text-2xl font-poppins font-semibold text-darkGreen text-center mb-10">
             Login
           </h2>
 
           <form className="space-y-6">
             {/* Email */}
-            <div>
+            <div className="mb-10">
               <label
                 htmlFor="email"
                 className="block text-sm font-poppins font-medium text-darkGreen"
@@ -34,7 +41,7 @@ const Login = () => {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="mb-10">
               <label
                 htmlFor="password"
                 className="block text-sm font-poppins font-medium text-darkGreen"
@@ -58,10 +65,20 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="w-full py-3 bg-darkGreen text-white rounded-md font-arial font-semibold text-lg hover:bg-darkestGreen"
+                className="w-full py-3 mt-5 bg-green-700 text-white rounded-md font-arial font-semibold text-lg hover:bg-darkestGreen"
               >
                 Login
               </button>
+            </div>
+
+            {/* Forget Password */}
+            <div className="text-center mt-10">
+              <p className="text-sm font-poppins text-mediumGreen">
+                Forget Password?{" "}
+                <Link to="/resetpassword" className="text-darkGreen font-semibold">
+                  Reset Password
+                </Link>
+              </p>
             </div>
 
             {/* Sign Up Link */}
