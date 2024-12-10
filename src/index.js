@@ -14,6 +14,7 @@ import { store, persistor } from "./redux/store";
 import { Provider } from "react-redux";
 import Checkout from "./pages/Checkout";
 import Return from "./pages/Return";
+import SnackbarNotification from "./component/SnackbarNotification";
 
 const appRouter = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={appRouter} />
       </PersistGate>
+      <SnackbarNotification />
     </Provider>
   </React.StrictMode>
 );
