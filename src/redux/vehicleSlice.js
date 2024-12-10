@@ -4,10 +4,37 @@ import axios from "axios";
 // Async Thunk for fetching vehicles
 export const fetchVehicles = createAsyncThunk(
   "vehicles/fetchVehicles",
-  async ({ location, pickUpDate, returnDate }) => {
+  async ({ location, pickUpDate, returnDate, selectedFilters }) => {
+    const {
+      segment = [],
+      brand = [],
+      fuelType = [],
+      transmissionType = [],
+      seatingCapacity = [],
+    } = selectedFilters || {};
+
     try {
+      const queryParams = new URLSearchParams({
+        city: location,
+        pickUpDate,
+        returnDate,
+      });
+
+      console.log(segment.join(","));
+
+      // if (segment.length) queryParams.append("segment", segment.join(","));
+      // if (brand.length) queryParams.append("brandname", brand.join(","));
+      // if (fuelType.length) queryParams.append("fuelType", fuelType.join(","));
+      // if (transmissionType.length)
+      //   queryParams.append("transmission", transmissionType.join(","));
+      // if (seatingCapacity.length)
+      //   queryParams.append("seater", seatingCapacity.join(","));
+
+      // console.log(queryParams.toString(), "value of query params");
+
+      // Send request
       const response = await axios.get(
-        `http://localhost:3010/vehicles/available?city=${location}&pickUpDate=${pickUpDate}&returnDate=${returnDate}`
+        `http://localhost:3010/vehicles/available?${queryParams.toString()}`
       );
       return response.data.vehicles;
     } catch (error) {
