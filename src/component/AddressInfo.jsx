@@ -1,4 +1,5 @@
 import React from "react";
+import { Field, ErrorMessage } from "formik";
 
 const AddressInfo = ({ formData, handleInputChange }) => {
   return (
@@ -15,14 +16,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
         >
           Address
         </label>
-        <input
+        <Field
           type="text"
           name="address"
-          id="address"
-          value={formData.address}
-          onChange={handleInputChange}
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
           placeholder="Enter your address"
+        />
+        <ErrorMessage
+          name="address"
+          component="div"
+          className="text-sm text-red-600 mt-2"
         />
       </div>
 
@@ -34,14 +37,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
         >
           State
         </label>
-        <input
+        <Field
           type="text"
           name="state"
-          id="state"
-          value={formData.state}
-          onChange={handleInputChange}
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
           placeholder="Enter your state"
+        />
+        <ErrorMessage
+          name="state"
+          component="div"
+          className="text-sm text-red-600 mt-2"
         />
       </div>
 
@@ -54,14 +59,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
           >
             Country
           </label>
-          <input
+          <Field
             type="text"
             name="country"
-            id="country"
-            value={formData.country}
-            onChange={handleInputChange}
             className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
             placeholder="Enter your country"
+          />
+          <ErrorMessage
+            name="country"
+            component="div"
+            className="text-sm text-red-600 mt-2"
           />
         </div>
         <div>
@@ -71,14 +78,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
           >
             City
           </label>
-          <input
+          <Field
             type="text"
             name="city"
-            id="city"
-            value={formData.city}
-            onChange={handleInputChange}
             className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
             placeholder="Enter your city"
+          />
+          <ErrorMessage
+            name="city"
+            component="div"
+            className="text-sm text-red-600 mt-2"
           />
         </div>
       </div>
@@ -92,14 +101,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
           >
             Contact Number
           </label>
-          <input
+          <Field
             type="number"
             name="contactNo"
-            id="contactNo"
-            value={formData.contactNo}
-            onChange={handleInputChange}
             className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
             placeholder="Enter your contact number"
+          />
+          <ErrorMessage
+            name="contactNo"
+            component="div"
+            className="text-sm text-red-600 mt-2"
           />
         </div>
         <div>
@@ -109,14 +120,16 @@ const AddressInfo = ({ formData, handleInputChange }) => {
           >
             Zip Code
           </label>
-          <input
+          <Field
             type="number"
             name="zipCode"
-            id="zipCode"
-            value={formData.zipCode}
-            onChange={handleInputChange}
             className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
             placeholder="Enter your zip code"
+          />
+          <ErrorMessage
+            name="zipCode"
+            component="div"
+            className="text-sm text-red-600 mt-2"
           />
         </div>
       </div>

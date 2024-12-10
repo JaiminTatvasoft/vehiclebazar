@@ -3,6 +3,7 @@ import vehicleReducer from "./vehicleSlice";
 import componentReducer from "./componentSlice";
 import userReducer from "./userSlice";
 import searchReducer from "./SearchSlice";
+import snackbarReducer from "./snackbarSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
@@ -26,6 +27,11 @@ const componentPersistConfig = {
   storage,
 };
 
+const snackbarPersistConfig = {
+  key: "snackbar",
+  storage,
+};
+
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const persistedSearchReducer = persistReducer(
   searchPersistConfig,
@@ -41,12 +47,18 @@ const persistedComponentReducer = persistReducer(
   componentReducer
 );
 
+const persistedSnackbarReducer = persistReducer(
+  snackbarPersistConfig,
+  snackbarReducer
+);
+
 const store = configureStore({
   reducer: {
     users: persistedUserReducer,
     vehicles: persistedVehicleReducer,
     components: persistedComponentReducer,
     search: persistedSearchReducer,
+    snack: persistedSnackbarReducer,
   },
 });
 

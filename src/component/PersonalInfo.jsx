@@ -1,4 +1,5 @@
 import React from "react";
+import { Field, ErrorMessage } from "formik";
 
 const PersonalInfo = ({ formData, handleInputChange }) => {
   const calculateAge = (dob) => {
@@ -21,14 +22,16 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
         >
           Name
         </label>
-        <input
+        <Field
           type="text"
           name="name"
-          id="name"
-          value={formData.name}
-          onChange={handleInputChange}
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
           placeholder="Enter your name"
+        />
+        <ErrorMessage
+          name="name"
+          component="div"
+          className="text-sm text-red-600 mt-2"
         />
       </div>
 
@@ -39,13 +42,15 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
         >
           Date of Birth
         </label>
-        <input
+        <Field
           type="date"
           name="dob"
-          id="dob"
-          value={formData.dob}
-          onChange={handleInputChange}
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+        />
+        <ErrorMessage
+          name="dob"
+          component="div"
+          className="text-sm text-red-600 mt-2"
         />
       </div>
 
@@ -62,18 +67,21 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
         >
           Gender
         </label>
-        <select
+        <Field
+          as="select"
           name="gender"
-          id="gender"
-          value={formData.gender}
-          onChange={handleInputChange}
           className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
         >
           <option value="">Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
-        </select>
+        </Field>
+        <ErrorMessage
+          name="gender"
+          component="div"
+          className="text-sm text-red-600 mt-2"
+        />
       </div>
     </div>
   );

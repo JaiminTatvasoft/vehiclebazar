@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { showSnackbar } from "./snackbarSlice";
 
 // Async Thunk for creating users
 export const createUser = createAsyncThunk(
   "users/createUser",
-  async ({ formData }) => {
+  async ({ formData }, { dispatch }) => {
     try {
       const {
         address,
@@ -39,11 +40,23 @@ export const createUser = createAsyncThunk(
         role,
       };
       const response = await axios.post(`http://localhost:3010/users`, body);
+
+      dispatch(
+        showSnackbar({
+          message: "Signup successful!",
+          severity: "success",
+        })
+      );
+
       return response.data;
     } catch (error) {
-      throw new Error(
-        error.response?.data?.message || "Failed to fetch vehicles"
+      dispatch(
+        showSnackbar({
+          message: error.response?.data?.message || "Signup failed",
+          severity: "error",
+        })
       );
+      throw new Error(error.response?.data?.message || "Failed to Create User");
     }
   }
 );
@@ -51,7 +64,7 @@ export const createUser = createAsyncThunk(
 // Async Thunk for user login
 export const userLogin = createAsyncThunk(
   "users/userLogin",
-  async ({ formData }) => {
+  async ({ formData }, { dispatch }) => {
     try {
       const response = await axios.post(
         `http://localhost:3010/auth/login`,
@@ -64,11 +77,22 @@ export const userLogin = createAsyncThunk(
       const decodedData = jwtDecode(token);
       localStorage.setItem("user", JSON.stringify(decodedData));
 
+      dispatch(
+        showSnackbar({
+          message: "Login successful!",
+          severity: "success",
+        })
+      );
+
       return { user: decodedData, access_token: token };
     } catch (error) {
-      throw new Error(
-        error.response?.data?.message || "Failed to fetch vehicles"
+      dispatch(
+        showSnackbar({
+          message: error.response?.data?.message || "Login failed",
+          severity: "error",
+        })
       );
+      throw new Error(error.response?.data?.message || "Failed to Login");
     }
   }
 );

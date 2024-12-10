@@ -1,29 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
-const AccountInfo = ({ formData, handleInputChange, handleValidation }) => {
-  const [passwordError, setPasswordError] = useState("");
-
-  // Validate password and confirm password match
-  const validatePassword = (e) => {
-    const { name, value } = e.target;
-    handleInputChange(e); // Call parent function to handle input change
-
-    if (name === "confirmPassword") {
-      if (value !== formData.password) {
-        setPasswordError("Passwords do not match");
-      } else {
-        setPasswordError(""); // Clear error if passwords match
-      }
-    }
-  };
-
+const AccountInfo = ({
+  formData,
+  handleInputChange,
+  handleBlur,
+  errors,
+  touched,
+}) => {
   return (
     <div className="mb-10">
       <h3 className="text-xl font-poppins font-semibold text-darkGreen mb-10">
         Account Info
       </h3>
 
-      <div className="">
+      {/* Email */}
+      <div>
         <label
           htmlFor="email"
           className="block text-sm text-darkGreen font-medium"
@@ -36,11 +27,20 @@ const AccountInfo = ({ formData, handleInputChange, handleValidation }) => {
           id="email"
           value={formData.email}
           onChange={handleInputChange}
-          className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+          onBlur={handleBlur}
+          className={`mt-2 p-3 w-full border ${
+            errors.email && touched.email
+              ? "border-red-600"
+              : "border-mediumGreen"
+          } rounded-md`}
           placeholder="Enter your email"
         />
+        {errors.email && touched.email && (
+          <p className="text-sm text-red-600 mt-2">{errors.email}</p>
+        )}
       </div>
 
+      {/* Password */}
       <div className="mt-8">
         <label
           htmlFor="password"
@@ -54,11 +54,20 @@ const AccountInfo = ({ formData, handleInputChange, handleValidation }) => {
           id="password"
           value={formData.password}
           onChange={handleInputChange}
-          className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+          onBlur={handleBlur}
+          className={`mt-2 p-3 w-full border ${
+            errors.password && touched.password
+              ? "border-red-600"
+              : "border-mediumGreen"
+          } rounded-md`}
           placeholder="Enter your password"
         />
+        {errors.password && touched.password && (
+          <p className="text-sm text-red-600 mt-2">{errors.password}</p>
+        )}
       </div>
 
+      {/* Confirm Password */}
       <div className="mt-8">
         <label
           htmlFor="confirmPassword"
@@ -71,12 +80,17 @@ const AccountInfo = ({ formData, handleInputChange, handleValidation }) => {
           name="confirmPassword"
           id="confirmPassword"
           value={formData.confirmPassword}
-          onChange={validatePassword} // Use the validation function here
-          className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+          className={`mt-2 p-3 w-full border ${
+            errors.confirmPassword && touched.confirmPassword
+              ? "border-red-600"
+              : "border-mediumGreen"
+          } rounded-md`}
           placeholder="Confirm your password"
         />
-        {passwordError && (
-          <p className="text-sm text-red-600 mt-2">{passwordError}</p> // Show error message
+        {errors.confirmPassword && touched.confirmPassword && (
+          <p className="text-sm text-red-600 mt-2">{errors.confirmPassword}</p>
         )}
       </div>
     </div>

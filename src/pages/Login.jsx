@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { createUser, userLogin } from "../redux/userSlice";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { userLogin } from "../redux/userSlice"; // Assuming this action is correctly set up
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({ email: "", password: "" });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    dispatch(userLogin({ formData }));
-    setFormData({ email: "", password: "" });
-  };
+  // Yup Validation Schema
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(5, "Password must be at least 5 characters")
+      .required("Password is required"),
+  });
+
+  // Formik setup
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      // Dispatching login action with form data
+      dispatch(userLogin({ formData: values }));
+      formik.resetForm(); // Reset the form after submission
+    },
+  });
+
   return (
     <>
       <div
@@ -27,9 +47,9 @@ const Login = () => {
             Login
           </h2>
 
-          <form className="space-y-6">
+          <form onSubmit={formik.handleSubmit} className="space-y-6">
             {/* Email */}
-            <div className="mb-10">
+            <div className="mb-4">
               <label
                 htmlFor="email"
                 className="block text-sm font-poppins font-medium text-darkGreen"
@@ -40,17 +60,21 @@ const Login = () => {
                 id="email"
                 name="email"
                 type="email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
                 placeholder="Enter your email"
               />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-red-600 text-xs mt-2">
+                  {formik.errors.email}
+                </div>
+              )}
             </div>
 
             {/* Password */}
-            <div className="mb-10">
+            <div className="mb-4">
               <label
                 htmlFor="password"
                 className="block text-sm font-poppins font-medium text-darkGreen"
@@ -61,13 +85,17 @@ const Login = () => {
                 id="password"
                 name="password"
                 type="password"
-                value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
                 placeholder="Enter your password"
               />
+              {formik.touched.password && formik.errors.password && (
+                <div className="text-red-600 text-xs mt-2">
+                  {formik.errors.password}
+                </div>
+              )}
             </div>
 
             {/* Submit Button */}
@@ -75,7 +103,6 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full py-3 mt-5 bg-green-700 text-white rounded-md font-arial font-semibold text-lg hover:bg-darkestGreen"
-                onClick={handleLogin}
               >
                 Login
               </button>
