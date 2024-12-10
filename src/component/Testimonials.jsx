@@ -94,7 +94,7 @@ const Testimonials = () => {
                 {/* Left navigation button (Prev) */}
                 <button
                   onClick={handlePrev}
-                  className="bg-white text-black rounded-full p-2 shadow-lg"
+                  className="bg-gradient-to-b from-white to-bgGreen text-black rounded-full p-2 shadow-lg"
                 >
                   Prev
                 </button>
@@ -102,7 +102,7 @@ const Testimonials = () => {
                 {/* Right navigation button (Next) */}
                 <button
                   onClick={handleNext}
-                  className="bg-white text-black rounded-full p-2 shadow-lg"
+                  className="bg-gradient-to-b from-white to-bgGreen text-black rounded-full p-2 shadow-lg "
                 >
                   Next
                 </button>
@@ -113,7 +113,7 @@ const Testimonials = () => {
           {/* Carousel Items */}
           <div
             ref={testimonialsRef}
-            className="flex gap-6 w-full snap-x snap-mandatory overflow-x-auto lg:w-1/2"
+            className="flex gap-6 w-full snap-x snap-mandatory overflow-x-auto lg:w-1/2  scrollbar-hide"
           >
             {features.map((feature, index) => (
               <div
@@ -137,22 +137,6 @@ const Testimonials = () => {
             ))}
           </div>
         </div>
-
-        {/* Mobile Buttons
-        <div className="lg:hidden flex justify-between">
-          <button
-            onClick={handlePrev}
-            className="absolute left-0 sm:left-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 shadow-lg z-10"
-          >
-            Prev
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-0 sm:right-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 shadow-lg z-10"
-          >
-            Next
-          </button>
-        </div> */}
       </div>
     </div>
   );

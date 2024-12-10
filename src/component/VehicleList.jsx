@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchVehicles } from "../redux/vehicleSlice";
 
 const VehicleList = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
   const { vehicles, loading, error } = useSelector((state) => state.vehicles);
 
-  const handleClick = (name) => {
-    navigate("/bookcar", { state: { carname: name } });
+  const location = city;
+  useEffect(() => {
+    dispatch(fetchVehicles({ location, pickUpDate, returnDate }));
+  }, [city, pickUpDate, returnDate]);
+
+  const handleClick = (vehicle) => {
+    navigate("/bookcar", { state: { vehicle } });
   };
 
   return (
@@ -59,29 +67,38 @@ const VehicleList = () => {
           </div>
 
           {/* Features and Additional Info */}
-          <div className="p-8">
+          <div className="p-5">
             {/* Vehicle Features with SVG Icons */}
             <div className="flex justify-center items-center space-x-4">
               {/* {vehicle.features.map((feature, index) => ( */}
               <div className="flex items-center text-sm text-gray-700">
                 {/* Dot representing the feature */}
-                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                <p className="text-xs ml-2 mr-5">{vehicle.transmission}</p>
+                <img
+                  className="w-4 h-4"
+                  src={require("../assets/transmission.png")}
+                />
+                <p className="text-xs ml-1 mr-5">{vehicle.transmission}</p>
               </div>
               <div className="flex items-center text-sm text-gray-700">
                 {/* Dot representing the feature */}
-                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                <p className="text-xs ml-2 mr-5">{vehicle.fuelType}</p>
+                <img className="w-4 h-4" src={require("../assets/fuel.png")} />
+                <p className="text-xs ml-1 mr-5">{vehicle.fuelType}</p>
               </div>
               <div className="flex items-center text-sm text-gray-700">
                 {/* Dot representing the feature */}
-                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                <p className="text-xs ml-2 mr-5">{vehicle.baggage} Baggage</p>
+                <img
+                  className="w-4 h-4"
+                  src={require("../assets/baggage.png")}
+                />
+                <p className="text-xs ml-1 mr-5">{vehicle.baggage} Baggage</p>
               </div>
               <div className="flex items-center text-sm text-gray-700">
                 {/* Dot representing the feature */}
-                <span className="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                <p className="text-xs ml-2 mr-5">{vehicle.seater} seater</p>
+                <img
+                  className="w-4 h-4"
+                  src={require("../assets/seater.png")}
+                />
+                <p className="text-xs ml-1 mr-5">{vehicle.seater} seater</p>
               </div>
               {/* ))} */}
             </div>
@@ -98,7 +115,7 @@ const VehicleList = () => {
               </button>
               <button
                 className="font-arial bg-darkGreen text-white py-2 px-6 rounded-md hover:bg-darkestGreen transition-colors"
-                onClick={() => handleClick(vehicle.name)}
+                onClick={() => handleClick(vehicle)}
               >
                 Book Now
               </button>

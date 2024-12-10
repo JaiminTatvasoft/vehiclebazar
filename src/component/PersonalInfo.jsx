@@ -4,6 +4,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
   const calculateAge = (dob) => {
     const birthDate = new Date(dob);
     const age = new Date().getFullYear() - birthDate.getFullYear();
+    formData.age = age;
     return age;
   };
 

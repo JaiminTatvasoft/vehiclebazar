@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/userSlice";
 
 const Header = ({ isScrolled }) => {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data } = useLoadUsers();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -64,25 +73,25 @@ const Header = ({ isScrolled }) => {
         <nav className="hidden md:flex space-x-6 items-center flex-grow justify-center me-8">
           <Link
             to="/"
-            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
+            className="text-black hover:text-darkGreen hover:underline font-semibold text-xl xl:text-xl"
           >
             Home
           </Link>
           <Link
-            to="/explore-cars"
-            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
+            to="/rentcar"
+            className="text-black hover:text-darkGreen hover:underline font-semibold text-xl xl:text-xl"
           >
             Explore Cars
           </Link>
           <Link
             to="/service"
-            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
+            className="text-black hover:text-darkGreen hover:underline font-semibold text-xl xl:text-xl"
           >
             Service
           </Link>
           <Link
             to="/contact"
-            className="text-black hover:text-darkGreen font-semibold text-xl xl:text-2xl"
+            className="text-black hover:text-darkGreen hover:underline font-semibold text-xl xl:text-xl"
           >
             Contact
           </Link>
@@ -90,24 +99,37 @@ const Header = ({ isScrolled }) => {
 
         {/* Login Button (Far Right) */}
         <div className="flex items-center space-x-4 ml-auto">
-          <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
-            <Link to="/login" className="flex items-center space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          {data ? (
+            <>
+              <button
+                className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2"
+                onClick={handleLogout}
               >
-                <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM12 14c-4.418 0-8 2.682-8 6s3.582 6 8 6 8-2.682 8-6-3.582-6-8-6z"></path>
-              </svg>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="bg-darkGreen text-white hover:bg-mediumGreen px-4 py-2 rounded flex items-center space-x-2">
+                <Link to="/login" className="flex items-center space-x-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM12 14c-4.418 0-8 2.682-8 6s3.582 6 8 6 8-2.682 8-6-3.582-6-8-6z"></path>
+                  </svg>
 
-              <span>Login</span>
-            </Link>
-          </button>
+                  <span>Login</span>
+                </Link>
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -123,7 +145,7 @@ const Header = ({ isScrolled }) => {
             Home
           </Link>
           <Link
-            to="/explore-cars"
+            to="/rentcar"
             className="block text-darkestGreen"
             onClick={toggleMenu}
           >

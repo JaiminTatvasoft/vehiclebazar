@@ -3,17 +3,22 @@ import AccountInfo from "../component/AccountInfo";
 import PersonalInfo from "../component/PersonalInfo";
 import AddressInfo from "../component/AddressInfo";
 import TermsCondition from "../component/TermsCondition";
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/userSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [step, setStep] = useState(2);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     name: "",
     dob: "",
+    age: 0,
     contactNo: "",
     address: "",
     termsAccepted: false,
+    role: "user",
   });
 
   const handleNext = () => setStep(step + 1);
@@ -25,8 +30,18 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+    dispatch(createUser({ formData }));
     // Here you can call the API to send the data
+    setFormData({
+      email: "",
+      password: "",
+      name: "",
+      dob: "",
+      contactNo: "",
+      address: "",
+      termsAccepted: false,
+      role: "user",
+    });
   };
 
   return (
@@ -34,7 +49,7 @@ const Signup = () => {
       <div
         className="min-h-screen bg-white flex justify-center items-center py-10  md:items-start md:justify-end"
         style={{
-          backgroundImage: `url(${require("../assets/bglogin.jpg")})`, // Add your image path here
+          backgroundImage: `url(${require("../assets/new-login-bkg.jpg")})`, // Add your image path here
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

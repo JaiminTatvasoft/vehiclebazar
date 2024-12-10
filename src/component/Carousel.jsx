@@ -1,32 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { fetchVehicles } from "../redux/vehicleSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { updateSearch } from "../redux/SearchSlice";
 
 const Carousel = () => {
   const slides = [
     {
       src: require("../assets/carousel-12.jpg"),
       alt: "Slide 1",
-      caption:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
     },
     {
       src: require("../assets/carousel-21.jpg"),
       alt: "Slide 2",
-      caption:
-        "482548754275642486 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
     },
     {
       src: require("../assets/carousel-3.jpg"),
       alt: "Slide 3",
-      caption:
-        "87687426785786466 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
     },
     {
       src: require("../assets/carousel-45.jpg"),
       alt: "Slide 4",
-      caption:
-        "87687426785786466 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptatem ullam alias nisi. Tempora quos illo quisquam perferendis dignissimos natus ratione maxime cupiditate, facere omnis ex placeat, reiciendis in provident!",
     },
   ];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [location, setLocation] = useState("");
@@ -53,6 +51,11 @@ const Carousel = () => {
     return new Date(returnDate) > new Date(pickUpDate);
   };
 
+  const handleSearch = () => {
+    dispatch(fetchVehicles({ location, pickUpDate, returnDate }));
+    dispatch(updateSearch({ location, pickUpDate, returnDate }));
+    navigate("/rentcar");
+  };
   return (
     <div className="relative h-screen flex items-center justify-center">
       <div className="absolute inset-0 overflow-hidden bg-cover bg-center">
@@ -84,7 +87,7 @@ const Carousel = () => {
                       </label>
                       <select
                         id="location"
-                        className="w-full px-3 py-2 border rounded-lg text-gray-700"
+                        className="w-full px-3 py-2 border rounded-lg text-gray-700 text-sm"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       >
@@ -105,7 +108,7 @@ const Carousel = () => {
                         type="datetime-local"
                         value={pickUpDate}
                         onChange={(e) => setPickUpDate(e.target.value)}
-                        className="w-full px-3 py-2 border rounded-lg text-gray-700"
+                        className="w-full px-3 py-2 border rounded-lg text-gray-700 text-sm"
                         disabled={!location} // Disable pickup date until city is selected
                         min={new Date().toISOString().slice(0, 16)} // Set minimum date to current date
                       />
@@ -122,15 +125,16 @@ const Carousel = () => {
                         type="datetime-local"
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
-                        className="w-full px-3 py-2 border rounded-lg text-gray-700"
+                        className="w-full px-3 py-2 border rounded-lg text-gray-700 text-sm"
                         disabled={!pickUpDate} // Disable return date until pickup date is selected
                         min={pickUpDate} // Set minimum return date to the pick-up date
                       />
                     </div>
                     <div className="flex items-end justify-center md:justify-start">
                       <button
-                        className="w-full bg-darkGreen text-white font-medium py-3 rounded-lg hover:bg-lightGreen"
+                        className={`w-full bg-darkGreen text-white font-medium py-3 rounded-lg hover:bg-lightGreen cursor-pointer `}
                         disabled={!isPickUpDateValid() || !isReturnDateValid()} // Disable the button if pick-up or return date is invalid
+                        onClick={handleSearch}
                       >
                         Search
                       </button>

@@ -1,6 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
 
 const BookCar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { vehicle } = location.state || {};
+
+  const { data } = useLoadUsers();
+
+  const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
+
+  const [shippingDetails, setShippingDetails] = useState({
+    address: "",
+    city: "",
+    state: "",
+    contact: "",
+  });
+  const pickUp = useDateTimeFormat(pickUpDate);
+  const returnInfo = useDateTimeFormat(returnDate);
+  const duration = useDuration(pickUpDate, returnDate);
+
+  const refundableDeposit = 3000;
+  const rentalCharges = vehicle.rentalChargesPerDay * duration.diffInDays;
+
+  const handleProceed = () => {
+    if (data) {
+      const resBody = {
+        orderItems: {
+          u_id: data._id,
+          p_id: vehicle._id,
+          prodName: `${vehicle.carname} ${vehicle.brandname}`,
+          noOfDays: `${duration.diffInDays} Days and ${duration.diffInHours} hours`,
+          startDate: pickUpDate,
+          endDate: returnDate,
+          totalPrice: refundableDeposit + rentalCharges,
+        },
+        shippingDetail: {
+          customerName: data.name,
+          email: data.email,
+          pickUpLocation: city,
+          dropLocation: city,
+          pickUpDate: pickUp.formattedDate,
+          pickUpTime: pickUp.formattedTime,
+          returnDate: returnInfo.formattedDate,
+          returnTime: returnInfo.formattedTime,
+        },
+      };
+      navigate("/checkout", { state: { resBody } });
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="mt-24 px-48">
       {/* Car Details Section */}
@@ -10,7 +63,8 @@ const BookCar = () => {
           {/* Car Header */}
           <div className="">
             <h1 className="text-2xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
-              MARUTI BALENO
+              {vehicle.brandname} {""}
+              {vehicle.carname}
             </h1>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
@@ -29,15 +83,15 @@ const BookCar = () => {
                 <div className="bg-gray-100 p-4 mt-3">
                   <h3 className="text-xl text-center font-semibold">
                     Location:{" "}
-                    <span className="capitalize font-extrabold text-darkestGreen">
-                      Delhi
+                    <span className="capitalize font-semibold text-darkestGreen">
+                      {city}
                     </span>
                   </h3>
 
                   <div className="p-2 text-sm flex flex-wrap justify-evenly">
                     <div>
-                      <p>Wed, 27 Nov 2024</p>
-                      <p className="text-center">09:30 AM</p>
+                      <p>{pickUp.formattedDate}</p>
+                      <p className="text-center">{pickUp.formattedTime}</p>
                     </div>
 
                     <div className="flex items-center justify-center font-bold bg-darkGreen rounded-full w-12 h-12">
@@ -45,15 +99,16 @@ const BookCar = () => {
                     </div>
 
                     <div>
-                      <p>Sat, 30 Nov 2024</p>
-                      <p className="text-center">06:30 PM</p>
+                      <p>{returnInfo.formattedDate}</p>
+                      <p className="text-center">{returnInfo.formattedTime}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center py-2">
                   <span className="text-md font-medium">
-                    Duration: 3 Days and 9 hours
+                    Duration: {duration.diffInDays} Days and{" "}
+                    {duration.diffInHours} hours
                   </span>
                 </div>
 
@@ -67,9 +122,9 @@ const BookCar = () => {
                     <div>Extra Km Charges:</div>
                   </div>
                   <div className="text-left font-semibold">
-                    <div>300 kms/day</div>
+                    <div>{vehicle.rentalChargesPerDay} kms/day</div>
                     <div>1013kms</div>
-                    <div>₹9/km</div>
+                    <div>₹{vehicle.extraKmCharges}/km</div>
                   </div>
                 </div>
               </div>
@@ -83,39 +138,39 @@ const BookCar = () => {
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
             {/* Car Features */}
-            <div className="mt-6">
+            <div className="">
               <div className="flex flex-wrap justify-between p-4">
                 <div className="flex items-center mb-4">
                   <img
-                    src="/_next/static/media/automatic.3de00118.svg"
+                    src={require("../assets/transmission.png")}
                     alt="Automatic"
                     className="mr-2"
                   />
-                  <span>Manual</span>
+                  <span>{vehicle.transmission}</span>
                 </div>
                 <div className="flex items-center mb-4">
                   <img
-                    src="/_next/static/media/petrol.95a6232f.svg"
+                    src={require("../assets/fuel.png")}
                     alt="Petrol"
                     className="mr-2"
                   />
-                  <span>Petrol</span>
+                  <span>{vehicle.fuelType}</span>
                 </div>
                 <div className="flex items-center mb-4">
                   <img
-                    src="/_next/static/media/seat.fa55a3aa.svg"
+                    src={require("../assets/baggage.png")}
                     alt="Baggage"
                     className="mr-2"
                   />
-                  <span>2 Baggage</span>
+                  <span>{vehicle.baggage} Baggage</span>
                 </div>
                 <div className="flex items-center mb-4">
                   <img
-                    src="/_next/static/media/pickup_vehical.c834bf16.svg"
+                    src={require("../assets/seater.png")}
                     alt="Seater"
                     className="mr-2"
                   />
-                  <span>5 Seater</span>
+                  <span>{vehicle.seater} Seater</span>
                 </div>
               </div>
 
@@ -124,7 +179,7 @@ const BookCar = () => {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <img
-                      src="/_next/static/media/insurance.1a8d38e5.svg"
+                      src={require("../assets/insurance.png")}
                       alt="Insurance"
                       className="mr-2"
                     />
@@ -132,7 +187,7 @@ const BookCar = () => {
                   </div>
                   <div className="flex items-center">
                     <img
-                      src="/_next/static/media/rs_assistant.a8f2bfe2.svg"
+                      src={require("../assets/roadside.png")}
                       alt="Roadside Assistance"
                       className="mr-2"
                     />
@@ -140,7 +195,7 @@ const BookCar = () => {
                   </div>
                   <div className="flex items-center">
                     <img
-                      src="/_next/static/media/fuel_2.eeeff8a4.svg"
+                      src={require("../assets/fuel.png")}
                       alt="Fuel"
                       className="mr-2"
                     />
@@ -163,10 +218,10 @@ const BookCar = () => {
               <p>Extra kms will be charged at ₹9/km</p>
 
               {/* View Details button */}
-              <button className="text-blue-500 font-bold flex items-center">
+              <button className="text-blue-500 font-semibold flex items-center">
                 View Details
                 <img
-                  src="/_next/static/media/view_arrow.bc231e85.svg"
+                  src={require("../assets/downdrop.png")}
                   alt="View Details"
                   className="ml-2"
                   style={{ transform: "none" }}
@@ -178,7 +233,9 @@ const BookCar = () => {
 
         {/* Right Side - Pickup and Drop Details */}
         <div className="mt-10 mb-20 lg:w-1/3 w-full pl-4">
-          <div className="text-2xl font-bold">Car pickup & Drop location</div>
+          <div className="text-xl font-semibold text-center">
+            Car Pickup & Drop Location
+          </div>
           <div className="bg-white mt-4 px-8 pb-8 rounded-lg shadow-lg mb-6">
             {/* Pickup Location */}
             <div className="mb-6">
@@ -190,7 +247,7 @@ const BookCar = () => {
               <textarea
                 className="w-full p-2 border rounded"
                 rows="3"
-                disabled
+                value={`Hub Location: ${city}, Date: ${pickUp.formattedDate}, Time: ${pickUp.formattedTime}`}
               ></textarea>
             </div>
 
@@ -204,7 +261,7 @@ const BookCar = () => {
               <textarea
                 className="w-full p-2 border rounded"
                 rows="3"
-                disabled
+                value={`Drop Location: ${city}, Date: ${returnInfo.formattedDate}, Time: ${returnInfo.formattedTime}`}
               ></textarea>
             </div>
           </div>
@@ -219,12 +276,16 @@ const BookCar = () => {
             <div className="text-sm mb-4">
               <div className="flex justify-between mb-2">
                 <span className="text-lg font-semibold">Rental Charges</span>
-                <span className="text-lg font-semibold">₹9,122</span>
+                <span className="text-lg font-semibold">₹{rentalCharges}</span>
               </div>
 
               <div className="flex justify-between mb-2">
-                <span className="text-lg font-semibold">Refundable Deposit</span>
-                <span className="text-lg font-semibold">₹3,000</span>
+                <span className="text-lg font-semibold">
+                  Refundable Deposit
+                </span>
+                <span className="text-lg font-semibold">
+                  ₹{refundableDeposit}
+                </span>
               </div>
             </div>
             <hr />
@@ -233,14 +294,17 @@ const BookCar = () => {
                 <div className="flex justify-between mb-2">
                   <h1 className="text-2xl font-bold">Total Amount</h1>
                   <h2 className="text-xl py-2 font-bold text-darkGreen">
-                    ₹12,122
+                    ₹{refundableDeposit + rentalCharges}
                   </h2>
                 </div>
               </div>
 
               {/* Center the button */}
               <div className="flex font-arial justify-center mt-4">
-                <button className="py-2 px-8 rounded-full text-lg font-bold bg-darkGreen text-white">
+                <button
+                  className="py-2 px-8 rounded-full text-lg font-bold bg-darkGreen text-white"
+                  onClick={handleProceed}
+                >
                   Proceed
                 </button>
               </div>

@@ -6,7 +6,6 @@ export const fetchVehicles = createAsyncThunk(
   "vehicles/fetchVehicles",
   async ({ location, pickUpDate, returnDate }) => {
     try {
-      console.log(location, pickUpDate, returnDate, " dateisdate");
       const response = await axios.get(
         `http://localhost:3010/vehicles/available?city=${location}&pickUpDate=${pickUpDate}&returnDate=${returnDate}`
       );

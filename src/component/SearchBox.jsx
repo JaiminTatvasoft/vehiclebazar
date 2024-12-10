@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSearch } from "../redux/SearchSlice";
 
 const SearchBox = () => {
-  const [locations, setLocations] = useState([
-    "New York",
-    "Los Angeles",
-    "Chicago",
-    "Houston",
-    "Miami",
-  ]);
-  const [pickupDateTime, setPickupDateTime] = useState("");
-  const [returnDateTime, setReturnDateTime] = useState("");
-  const [location, setLocation] = useState("");
+  const dispatch = useDispatch();
+  const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
+
+  const [location, setLocation] = useState(city || "");
+  const [pickupDateTime, setPickupDateTime] = useState(pickUpDate || "");
+  const [returnDateTime, setReturnDateTime] = useState(returnDate || "");
+
+  const locations = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
 
   const currentDateTime = new Date();
 
@@ -23,17 +23,15 @@ const SearchBox = () => {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  const handlePickupDateChange = (e) => {
-    setPickupDateTime(e.target.value);
+  const handleSearch = () => {
+    dispatch(
+      updateSearch({
+        location,
+        pickUpDate: pickupDateTime,
+        returnDate: returnDateTime,
+      })
+    );
   };
-
-  const handleReturnDateChange = (e) => {
-    setReturnDateTime(e.target.value);
-  };
-
-  useEffect(() => {
-    setLocations(locations);
-  }, []);
 
   return (
     <div className="fixed left-1/2 transform -translate-x-1/2 w-full px-48 py-3 shadow-lg bg-gray-300">
@@ -53,7 +51,7 @@ const SearchBox = () => {
             onChange={(e) => setLocation(e.target.value)}
             className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           >
-            <option value="">Select a city</option>
+            <option value="">{location ? location : "Select a city"}</option>
             {locations.map((city, index) => (
               <option key={index} value={city}>
                 {city}
@@ -76,7 +74,7 @@ const SearchBox = () => {
             name="pickupDate"
             min={formatDateTime(currentDateTime)}
             value={pickupDateTime}
-            onChange={handlePickupDateChange}
+            onChange={(e) => setPickupDateTime(e.target.value)}
             className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           />
         </div>
@@ -95,14 +93,17 @@ const SearchBox = () => {
             name="returnDate"
             min={pickupDateTime || formatDateTime(currentDateTime)} // Ensure return date is after pickup date
             value={returnDateTime}
-            onChange={handleReturnDateChange}
+            onChange={(e) => setReturnDateTime(e.target.value)}
             className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           />
         </div>
 
         {/* Search Button */}
         <div className="font-arial flex-1 min-w-[150px] flex flex-col justify-end items-end">
-          <button className="bg-darkGreen text-white px-6 py-3 mt-6 rounded-lg shadow-md hover:bg-darkestGreen focus:outline-none focus:ring-2 focus:ring-darkGreen disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 self-end">
+          <button
+            className="bg-darkGreen text-white px-6 py-3 mt-6 rounded-lg shadow-md hover:bg-darkestGreen focus:outline-none focus:ring-2 focus:ring-darkGreen disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 self-end"
+            onClick={handleSearch}
+          >
             Search Vehicles
           </button>
         </div>
@@ -112,4 +113,3 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
-  

@@ -12,6 +12,8 @@ import BookCar from "./component/BookCar";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import { Provider } from "react-redux";
+import Checkout from "./pages/Checkout";
+import Return from "./pages/Return";
 
 const appRouter = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/bookcar",
         element: <BookCar />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "/return",
+        element: <Return />,
       },
     ],
   },
