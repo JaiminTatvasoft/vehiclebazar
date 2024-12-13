@@ -10,7 +10,14 @@ const SearchBox = () => {
   const [pickupDateTime, setPickupDateTime] = useState(pickUpDate || "");
   const [returnDateTime, setReturnDateTime] = useState(returnDate || "");
 
-  const locations = ["New York", "Los Angeles", "Chicago", "Houston", "Miami"];
+  const locations = [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Miami",
+    "Ahmedabad",
+  ];
 
   const currentDateTime = new Date();
 

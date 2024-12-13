@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
 
 const BookCar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { vehicle } = location.state || {};
+  const { vehicle, selectedPackage, freeKms } = location.state || {};
 
   const { data } = useLoadUsers();
 
   const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
 
-  const [shippingDetails, setShippingDetails] = useState({
-    address: "",
-    city: "",
-    state: "",
-    contact: "",
-  });
   const pickUp = useDateTimeFormat(pickUpDate);
   const returnInfo = useDateTimeFormat(returnDate);
   const duration = useDuration(pickUpDate, returnDate);
 
   const refundableDeposit = 3000;
-  const rentalCharges = vehicle.rentalChargesPerDay * duration.diffInDays;
+  let finalDuration = (duration.diffInDays + duration.diffInHours / 24).toFixed(
+    1
+  );
+  let rentalCharges = vehicle.rentalChargesPerDay * finalDuration;
+  selectedPackage === 120
+    ? (rentalCharges = rentalCharges)
+    : (rentalCharges = rentalCharges * 1.25);
 
   const handleProceed = () => {
     if (data) {
       const resBody = {
         orderItems: {
-          u_id: data._id,
+          u_id: data.id,
           p_id: vehicle._id,
           prodName: `${vehicle.carname} ${vehicle.brandname}`,
           noOfDays: `${duration.diffInDays} Days and ${duration.diffInHours} hours`,
@@ -56,13 +56,80 @@ const BookCar = () => {
   };
   return (
     <div className="mt-24 px-48">
+      <div>
+        <nav
+          className="flex text-black py-3 px-5 rounded-lg mb-2"
+          aria-label="Breadcrumb"
+        >
+          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+            <li className="inline-flex items-center">
+              <Link
+                to="/"
+                className="text-sm text-black hover:text-gray-500 inline-flex items-center font-medium"
+              >
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                Home
+              </Link>
+            </li>
+            <li>
+              <div className="flex items-center">
+                <svg
+                  className="w-6 h-6 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <Link
+                  to="/rentcar"
+                  className="text-black hover:text-gray-500 ml-1 md:ml-2 text-sm font-medium"
+                >
+                  Explore Cars
+                </Link>
+              </div>
+            </li>
+            <li aria-current="page">
+              <div className="flex items-center">
+                <svg
+                  className="w-6 h-6 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium dark:text-gray-500">
+                  Book Car
+                </span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
       {/* Car Details Section */}
       <div className="flex flex-wrap lg:flex-nowrap">
         {/* Left Side - Car Image & Details */}
         <div className="mt-10 mb-20 lg:w-2/3 w-full pr-4">
           {/* Car Header */}
           <div className="">
-            <h1 className="text-2xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
+            <h1 className="text-xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
               {vehicle.brandname} {""}
               {vehicle.carname}
             </h1>
@@ -118,12 +185,19 @@ const BookCar = () => {
                 <div className="flex justify-between items-center mt-3 text-md">
                   <div>
                     <div>Package Type:</div>
+                    <div>Rental Amount:</div>
                     <div>Free kms for rental:</div>
                     <div>Extra Km Charges:</div>
                   </div>
                   <div className="text-left font-semibold">
-                    <div>{vehicle.rentalChargesPerDay} kms/day</div>
-                    <div>1013kms</div>
+                    <div>{selectedPackage} kms/day</div>
+                    <div>
+                      {selectedPackage === 120
+                        ? vehicle.rentalChargesPerDay
+                        : vehicle.rentalChargesPerDay * 1.25}
+                      /day
+                    </div>
+                    <div>{freeKms} kms</div>
                     <div>₹{vehicle.extraKmCharges}/km</div>
                   </div>
                 </div>
@@ -132,7 +206,7 @@ const BookCar = () => {
           </div>
 
           <div className="">
-            <h1 className="text-2xl ps-4 py-2 rounded-t-lg font-semibold bg-darkGreen">
+            <h1 className="text-xl ps-4 py-2 rounded-t-lg font-semibold bg-darkGreen">
               Car Features
             </h1>
           </div>
@@ -144,7 +218,7 @@ const BookCar = () => {
                   <img
                     src={require("../assets/transmission.png")}
                     alt="Automatic"
-                    className="mr-2"
+                    className="mr-2 h-[18px] w-[18px]"
                   />
                   <span>{vehicle.transmission}</span>
                 </div>
@@ -152,7 +226,7 @@ const BookCar = () => {
                   <img
                     src={require("../assets/fuel.png")}
                     alt="Petrol"
-                    className="mr-2"
+                    className="mr-2 h-[18px] w-[18px]"
                   />
                   <span>{vehicle.fuelType}</span>
                 </div>
@@ -160,7 +234,7 @@ const BookCar = () => {
                   <img
                     src={require("../assets/baggage.png")}
                     alt="Baggage"
-                    className="mr-2"
+                    className="mr-2 h-[18px] w-[18px]"
                   />
                   <span>{vehicle.baggage} Baggage</span>
                 </div>
@@ -168,7 +242,7 @@ const BookCar = () => {
                   <img
                     src={require("../assets/seater.png")}
                     alt="Seater"
-                    className="mr-2"
+                    className="mr-2 h-[18px] w-[18px]"
                   />
                   <span>{vehicle.seater} Seater</span>
                 </div>
@@ -181,7 +255,7 @@ const BookCar = () => {
                     <img
                       src={require("../assets/insurance.png")}
                       alt="Insurance"
-                      className="mr-2"
+                      className="mr-2 h-[15px] w-[15px]"
                     />
                     <span>Insurance</span>
                   </div>
@@ -189,7 +263,7 @@ const BookCar = () => {
                     <img
                       src={require("../assets/roadside.png")}
                       alt="Roadside Assistance"
-                      className="mr-2"
+                      className="mr-2 h-[15px] w-[15px]"
                     />
                     <span>Road Side Assistance</span>
                   </div>
@@ -197,7 +271,7 @@ const BookCar = () => {
                     <img
                       src={require("../assets/fuel.png")}
                       alt="Fuel"
-                      className="mr-2"
+                      className="mr-2 h-[15px] w-[15px]"
                     />
                     <span>Fuel</span>
                   </div>
@@ -268,7 +342,7 @@ const BookCar = () => {
 
           {/* Payment Summary */}
           <div className="">
-            <h1 className="text-2xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
+            <h1 className="text-xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
               Booking Summary
             </h1>
           </div>

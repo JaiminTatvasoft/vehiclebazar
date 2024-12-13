@@ -29,11 +29,15 @@ const Checkout = () => {
   const options = { fetchClientSecret };
 
   return (
-    <div id="checkout">
-      {/* <h1>Heelllooo</h1> */}
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
+    <div
+      id="checkout"
+      className="flex items-center justify-center pt-28 pb-16 min-h-screen bg-lightGreen"
+    >
+      <div className="sm:min-w-[450px] w-auto">
+        <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+          <EmbeddedCheckout />
+        </EmbeddedCheckoutProvider>
+      </div>
     </div>
   );
 };

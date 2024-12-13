@@ -28,7 +28,7 @@ export const createUser = createAsyncThunk(
         name,
         age,
         dob,
-        contact: contactNo,
+        contact: "9726235948",
         address,
         country,
         city,
@@ -37,7 +37,7 @@ export const createUser = createAsyncThunk(
         gender,
         email,
         password,
-        role,
+        role: "user",
       };
       const response = await axios.post(`http://localhost:3010/users`, body);
 

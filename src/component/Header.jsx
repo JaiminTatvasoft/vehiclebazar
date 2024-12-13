@@ -25,7 +25,7 @@ const Header = ({ isScrolled }) => {
     >
       <div className="max-w-screen-3xl px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-4 ">
         {/* Hamburger Menu Button */}
-        <button onClick={toggleMenu} className="p-2 rounded-md">
+        <button onClick={toggleMenu} className="p-2 rounded-md md:hidden">
           {isMenuOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
