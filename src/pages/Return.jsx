@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import "animate.css";
+import { useSelector } from "react-redux";
 
 const Return = () => {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { data, token } = useSelector((state) => state.users);
 
   useEffect(() => {
     fetchCheckoutSession();
@@ -30,6 +32,7 @@ const Return = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
       }
     );
