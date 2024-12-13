@@ -1,12 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
+import axios from "axios";
+import { showSnackbar } from "../redux/snackbarSlice";
 
 const BookCar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { vehicle, selectedPackage, freeKms } = location.state || {};
 
   const { data } = useLoadUsers();
@@ -26,7 +29,7 @@ const BookCar = () => {
     ? (rentalCharges = rentalCharges)
     : (rentalCharges = rentalCharges * 1.25);
 
-  const handleProceed = () => {
+  const handleProceed = async () => {
     if (data) {
       const resBody = {
         orderItems: {
@@ -49,7 +52,24 @@ const BookCar = () => {
           returnTime: returnInfo.formattedTime,
         },
       };
-      navigate("/checkout", { state: { resBody } });
+      try {
+        const response = await axios.get(
+          `http://localhost:3010/orders/check-order-existence?u_id=${data.id}&p_id=${vehicle._id}&startDate=${pickUpDate}&endDate=${returnDate}`
+        );
+        console.log(response.data);
+        if (response.data === true) {
+          dispatch(
+            showSnackbar({
+              message: "Vehicle Already Registered",
+              severity: "error",
+            })
+          );
+        } else {
+          navigate("/checkout", { state: { resBody } });
+        }
+      } catch (err) {
+        console.error("Error fetching order existence:", err);
+      }
     } else {
       navigate("/login");
     }
