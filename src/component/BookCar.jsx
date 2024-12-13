@@ -13,12 +13,6 @@ const BookCar = () => {
 
   const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
 
-  const [shippingDetails, setShippingDetails] = useState({
-    address: "",
-    city: "",
-    state: "",
-    contact: "",
-  });
   const pickUp = useDateTimeFormat(pickUpDate);
   const returnInfo = useDateTimeFormat(returnDate);
   const duration = useDuration(pickUpDate, returnDate);
@@ -30,7 +24,7 @@ const BookCar = () => {
     if (data) {
       const resBody = {
         orderItems: {
-          u_id: data._id,
+          u_id: data.id,
           p_id: vehicle._id,
           prodName: `${vehicle.carname} ${vehicle.brandname}`,
           noOfDays: `${duration.diffInDays} Days and ${duration.diffInHours} hours`,
@@ -218,8 +212,8 @@ const BookCar = () => {
               <p>Extra kms will be charged at ₹9/km</p>
 
               {/* View Details button */}
-              <button className="text-blue-500 font-semibold flex items-center">
-                View Details
+              <button className="text-darkGreen font-semibold flex items-center">
+                view details
                 <img
                   src={require("../assets/downdrop.png")}
                   alt="View Details"

@@ -18,7 +18,7 @@ const RentalFilter = () => {
     brand: ["Maruti", "Mahindra", "Hyundai", "Honda"],
     fuelType: ["diesel", "petrol"],
     transmissionType: ["automatic", "manual"],
-    seatingCapacity: ["5", "7"],
+    seatingCapacity: [5, 7],
   };
 
   const handleFilterChange = (category, value) => {
@@ -54,16 +54,29 @@ const RentalFilter = () => {
     );
   };
 
+  const handleClearFilter = () => {
+    setSelectedFilters({
+      segment: [],
+      brand: [],
+      fuelType: [],
+      transmissionType: [],
+      seatingCapacity: [],
+    });
+  };
+
   return (
     <div className="mt-28 gap-6 border rounded-md hidden lg:flex">
       {/* Filter Sidebar */}
       <div className="plp-rental-filter-wrapper bg-white p-4 rounded-lg shadow-lg w-full">
         {/* Filter Header */}
-        <div className="d-flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4">
           <div className="filter-text text-lg font-semibold">Filter</div>
-          <div className="clear-all-text text-sm text-blue-500 cursor-pointer">
+          <button
+            className="clear-all-text text-sm text-darkGreen cursor-pointer"
+            onClick={handleClearFilter}
+          >
             Clear All
-          </div>
+          </button>
         </div>
 
         {/* Filter Options */}

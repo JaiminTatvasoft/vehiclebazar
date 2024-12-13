@@ -19,7 +19,7 @@ const VehicleList = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-28 ms-10">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-28 mb-10 ms-10">
       {vehicles.map((vehicle) => (
         <div key={vehicle._id} className="bg-white border rounded-lg">
           {/* Vehicle Info Section with Image on the Left and Text on the Right */}
@@ -36,7 +36,7 @@ const VehicleList = () => {
             {/* Text Content on the Right */}
             <div className="flex-1 p-4">
               {/* Vehicle Name */}
-              <h1 className="text-2xl font-semibold text-gray-800">
+              <h1 className="text-2xl font-semibold text-darkGreen">
                 {vehicle.carname}
               </h1>
               {/* Brand Name */}
@@ -110,7 +110,7 @@ const VehicleList = () => {
 
             {/* Action Buttons */}
             <div className="flex justify-between mt-4 px-4">
-              <button className="text-sm font-bold text-blue-500 hover:underline">
+              <button className="text-sm font-bold text-darkGreen hover:underline">
                 View Details
               </button>
               <button

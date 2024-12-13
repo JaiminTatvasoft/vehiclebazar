@@ -4,6 +4,7 @@ import componentReducer from "./componentSlice";
 import userReducer from "./userSlice";
 import searchReducer from "./SearchSlice";
 import snackbarReducer from "./snackbarSlice";
+import comparisionReducer from "./comparisionSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
@@ -32,6 +33,11 @@ const snackbarPersistConfig = {
   storage,
 };
 
+const comparisionPersistConfig = {
+  key: "comparision",
+  storage,
+};
+
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const persistedSearchReducer = persistReducer(
   searchPersistConfig,
@@ -52,6 +58,11 @@ const persistedSnackbarReducer = persistReducer(
   snackbarReducer
 );
 
+const persistedComparisionReducer = persistReducer(
+  comparisionPersistConfig,
+  comparisionReducer
+);
+
 const store = configureStore({
   reducer: {
     users: persistedUserReducer,
@@ -59,6 +70,7 @@ const store = configureStore({
     components: persistedComponentReducer,
     search: persistedSearchReducer,
     snack: persistedSnackbarReducer,
+    comparisions: persistedComparisionReducer,
   },
 });
 

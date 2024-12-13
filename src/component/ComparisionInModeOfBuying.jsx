@@ -1,60 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchComparisions } from "../redux/comparisionSlice";
+
 const ComparisionInModeOfBuying = () => {
-  const features = [
-    {
-      title: "Easy Online Booking",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "Zero down payment & roadtax",
-      subscription: true,
-      usedCar: true,
-      newCar: false,
-    },
-    {
-      title: "Zero liability",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "Annual insurance included",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "Return or extend anytime",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "Free service & maintenance",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "No long term commitment",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "No waiting period",
-      subscription: true,
-      usedCar: false,
-      newCar: false,
-    },
-    {
-      title: "Option to switch cars",
-      subscription: true,
-      usedCar: false,
-      newCar: true,
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const { comparisions, loading, error } = useSelector(
+    (state) => state.comparisions
+  );
+  console.log(comparisions, "comparision");
+
+  useEffect(() => {
+    dispatch(fetchComparisions());
+  }, []);
 
   return (
     <div className="bg-white">
@@ -81,30 +39,30 @@ const ComparisionInModeOfBuying = () => {
               </tr>
             </thead>
             <tbody>
-              {features.map((feature, index) => (
+              {comparisions.map((comparision, index) => (
                 <tr
                   key={index}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 >
                   <td className="border border-gray-300 text-darkestGreen font-bold py-3 px-4 font-poppins">
-                    {feature.title}
+                    {comparision.title}
                   </td>
                   <td className="border border-gray-300 py-3 px-4 text-center">
-                    {feature.subscription ? (
+                    {comparision.rentalCarSubscription ? (
                       <span className="text-green-500 text-xl">✔</span>
                     ) : (
                       <span className="text-red-500 text-xl">✘</span>
                     )}
                   </td>
                   <td className="border border-gray-300 py-3 px-4 text-center">
-                    {feature.usedCar ? (
+                    {comparision.buyingUsedCar ? (
                       <span className="text-green-500 text-xl">✔</span>
                     ) : (
                       <span className="text-red-500 text-xl">✘</span>
                     )}
                   </td>
                   <td className="border border-gray-300 py-3 px-4 text-center">
-                    {feature.newCar ? (
+                    {comparision.buyingNewCar ? (
                       <span className="text-green-500 text-xl">✔</span>
                     ) : (
                       <span className="text-red-500 text-xl">✘</span>

@@ -5,6 +5,7 @@ import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
+import { useSelector } from "react-redux";
 const stripePromise = loadStripe(
   "pk_test_51QCaJxGHm1Xk7UGKaHw7k2vxjoE3xWgucrBoD3h24ifpIit3SVlMu0W60Q2zaVgVq9OEdEvhpQ4RVQ0THVwHzZIA00HZFGxNrw"
 );
@@ -12,6 +13,7 @@ const stripePromise = loadStripe(
 const Checkout = () => {
   const location = useLocation();
   const { resBody } = location.state || {};
+  const { data, token } = useSelector((state) => state.users);
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
@@ -20,6 +22,7 @@ const Checkout = () => {
       body: JSON.stringify(resBody),
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())

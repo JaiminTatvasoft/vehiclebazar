@@ -14,27 +14,17 @@ export const fetchVehicles = createAsyncThunk(
     } = selectedFilters || {};
 
     try {
-      const queryParams = new URLSearchParams({
-        city: location,
-        pickUpDate,
-        returnDate,
-      });
+      let query = `city=${location}&pickUpDate=${pickUpDate}&returnDate=${returnDate}`;
+      if (segment.length) query += `&segment=${segment.join(",")}`;
+      if (brand.length) query += `&brandname=${brand.join(",")}`;
+      if (fuelType.length) query += `&fuelType=${fuelType.join(",")}`;
+      if (transmissionType.length)
+        query += `&transmission=${transmissionType.join(",")}`;
+      if (seatingCapacity.length)
+        query += `&seater=${seatingCapacity.join(",")}`;
 
-      console.log(segment.join(","));
-
-      // if (segment.length) queryParams.append("segment", segment.join(","));
-      // if (brand.length) queryParams.append("brandname", brand.join(","));
-      // if (fuelType.length) queryParams.append("fuelType", fuelType.join(","));
-      // if (transmissionType.length)
-      //   queryParams.append("transmission", transmissionType.join(","));
-      // if (seatingCapacity.length)
-      //   queryParams.append("seater", seatingCapacity.join(","));
-
-      // console.log(queryParams.toString(), "value of query params");
-
-      // Send request
       const response = await axios.get(
-        `http://localhost:3010/vehicles/available?${queryParams.toString()}`
+        `http://localhost:3010/vehicles/available-vehicle?${query}`
       );
       return response.data.vehicles;
     } catch (error) {
