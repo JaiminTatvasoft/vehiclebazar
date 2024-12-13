@@ -8,7 +8,6 @@ const ComparisionInModeOfBuying = () => {
   const { comparisions, loading, error } = useSelector(
     (state) => state.comparisions
   );
-  console.log(comparisions, "comparision");
 
   useEffect(() => {
     dispatch(fetchComparisions());

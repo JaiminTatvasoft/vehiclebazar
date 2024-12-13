@@ -28,8 +28,7 @@ const Signup = () => {
     gender: "",
     termsAccepted: false,
   };
-  console.log(step);
-  
+
   const handleNext = () => setStep(step + 1);
   const handlePrevious = () => setStep(step - 1);
 
@@ -68,8 +67,6 @@ const Signup = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
-    
     dispatch(createUser({ formData: values }));
     setStep(2); // Reset to first step after submission
   };

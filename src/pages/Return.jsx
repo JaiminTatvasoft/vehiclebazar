@@ -37,7 +37,6 @@ const Return = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
 
     setStatus(data.status);
     setCustomerEmail(data.customer_email);

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const RentCar = () => {
   return (
     <div className="mt-24 font-poppins lg:mt-0 min-h-screen">
-      <div className="flex flex-wrap mt-20">
+      <div className="flex flex-wrap mt-24">
         <SearchBox />
       </div>
       <div className="px-48">

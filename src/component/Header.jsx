@@ -23,7 +23,7 @@ const Header = ({ isScrolled }) => {
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-screen-3xl px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-4 ">
+      <div className="max-w-screen-3xl px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-1 ">
         {/* Hamburger Menu Button */}
         <button onClick={toggleMenu} className="p-2 rounded-md md:hidden">
           {isMenuOpen ? (
@@ -63,9 +63,9 @@ const Header = ({ isScrolled }) => {
           className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2 md:static md:ml-16"
         >
           <img
-            src={require("../assets/avatar.png")}
+            src={require("../assets/vb-logo-preview.png")}
             alt="Logo"
-            className="h-10"
+            className="h-24 w-32"
           />
         </Link>
 
