@@ -47,7 +47,7 @@ const SearchBox = () => {
         <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="location"
-            className="block text-textcolor font-semibold text-sm mb-2"
+            className="block text-darkGreen font-semibold text-sm mb-2"
           >
             Location
           </label>
@@ -71,7 +71,7 @@ const SearchBox = () => {
         <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="pickupDate"
-            className="block text-textcolor font-semibold text-sm mb-2"
+            className="block text-darkGreen font-semibold text-sm mb-2"
           >
             Pickup Date & Time
           </label>
@@ -90,7 +90,7 @@ const SearchBox = () => {
         <div className="flex-1 min-w-[150px]">
           <label
             htmlFor="returnDate"
-            className="block text-textcolor font-semibold text-sm mb-2"
+            className="block text-darkGreen font-semibold text-sm mb-2"
           >
             Return Date & Time
           </label>
@@ -102,6 +102,7 @@ const SearchBox = () => {
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
             className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
+            style={{}}
           />
         </div>
 
@@ -111,7 +112,7 @@ const SearchBox = () => {
             className="bg-darkGreen text-white px-6 py-3 mt-6 rounded-lg shadow-md hover:bg-darkestGreen focus:outline-none focus:ring-2 focus:ring-darkGreen disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 self-end"
             onClick={handleSearch}
           >
-            Search Vehicles
+            Modify Search
           </button>
         </div>
       </div>

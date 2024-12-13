@@ -24,11 +24,12 @@ export const createUser = createAsyncThunk(
         zipCode,
         age,
       } = formData;
+
       const body = {
         name,
         age,
         dob,
-        contact: "9726235948",
+        contact: String(contactNo),
         address,
         country,
         city,

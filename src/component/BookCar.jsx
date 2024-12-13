@@ -292,8 +292,8 @@ const BookCar = () => {
               <p>Extra kms will be charged at ₹9/km</p>
 
               {/* View Details button */}
-              <button className="text-blue-500 font-semibold flex items-center">
-                View Details
+              <button className="text-darkGreen font-semibold flex items-center">
+                view details
                 <img
                   src={require("../assets/downdrop.png")}
                   alt="View Details"
