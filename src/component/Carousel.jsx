@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchVehicles } from "../redux/vehicleSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateSearch } from "../redux/SearchSlice";
 
@@ -30,6 +30,8 @@ const Carousel = () => {
   const [location, setLocation] = useState("");
   const [pickUpDate, setPickUpDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+
+  const { locations, loading, error } = useSelector((state) => state.cities);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -91,9 +93,11 @@ const Carousel = () => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       >
-                        <option value="">Add City</option>
-                        <option value="Ahmedabad">Ahmedabad</option>
-                        <option value="Rajkot">Rajkot</option>
+                        {locations.map((city, index) => (
+                          <option key={index} value={city}>
+                            {city}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div>

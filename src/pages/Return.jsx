@@ -2,16 +2,25 @@ import React, { useState, useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import "animate.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCheckoutSessions } from "../redux/checkoutSlice"; // Import the thunk action
 
 const Return = () => {
-  const [status, setStatus] = useState(null);
-  const [customerEmail, setCustomerEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const { data, token } = useSelector((state) => state.users);
+  const { status, customerEmail, loading, error } = useSelector(
+    (state) => state.checkout
+  );
+  const { token } = useSelector((state) => state.users); // Get the token from Redux
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchCheckoutSession();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const sessionId = urlParams.get("session_id");
+
+    if (sessionId) {
+      dispatch(fetchCheckoutSessions({ sessionId, token })); // Dispatch the thunk
+    }
 
     const timer = setTimeout(() => {
       setRedirect(true);
@@ -19,46 +28,25 @@ const Return = () => {
 
     // Clean up timeout on component unmount
     return () => clearTimeout(timer);
-  }, []);
-
-  const fetchCheckoutSession = async () => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const sessionId = urlParams.get("session_id");
-
-    const res = await fetch(
-      `http://localhost:3010/stripe/after-checkout?session_id=${sessionId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const data = await res.json();
-
-    setStatus(data.status);
-    setCustomerEmail(data.customer_email);
-  };
+  }, [dispatch, token]);
 
   if (redirect) {
     return <Navigate to="/" />;
   }
 
+  if (loading) {
+    return <div>Loading...</div>; // Show loading state
+  }
+
   if (status === "open") {
-    return (
-      <>
-        <Navigate to="/checkout" />
-      </>
-    );
+    return <Navigate to="/checkout" />;
   }
 
   if (status === "complete") {
     return (
       <section
         id="success"
-        className="flex items-center justify-center h-screen bg-white  text-black pt-28"
+        className="flex items-center justify-center h-screen bg-white text-black pt-28"
       >
         <div className="max-w-lg w-full text-center p-8 rounded-lg shadow-xl bg-mediumGreen bg-opacity-20 backdrop-blur-md">
           {/* Success Icon */}
@@ -95,18 +83,8 @@ const Return = () => {
     );
   }
 
-  if (status === "Error fetching vehicles") {
-    return (
-      <>
-        <section id="success" className="mt-28 h-screen">
-          <p>
-            We appreciate your business! A confirmation email will be sent to{" "}
-            {customerEmail}. If you have any questions, please email{" "}
-            <a href="mailto:orders@example.com">orders@example.com</a>.
-          </p>
-        </section>
-      </>
-    );
+  if (error) {
+    return <div>Error: {error}</div>; // Show error if any
   }
 
   return <div className="h-screen"></div>;

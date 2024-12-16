@@ -7,10 +7,12 @@ import AccountInfo from "../component/AccountInfo";
 import PersonalInfo from "../component/PersonalInfo";
 import AddressInfo from "../component/AddressInfo";
 import TermsCondition from "../component/TermsCondition";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(2);
+  const navigate = useNavigate();
 
   const initialValues = {
     email: "",
@@ -39,7 +41,14 @@ const Signup = () => {
         .email("Invalid email address")
         .required("Email is required"),
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
+        .min(8, "Password must be at least 8 characters")
+        .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .matches(/[0-9]/, "Password must contain at least one number")
+        .matches(
+          /[!@#$%^&*(),.?":{}|<>]/,
+          "Password must contain at least one special character"
+        )
         .required("Password is required"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -69,6 +78,7 @@ const Signup = () => {
   const handleSubmit = (values) => {
     dispatch(createUser({ formData: values }));
     setStep(2); // Reset to first step after submission
+    navigate("/login");
   };
 
   return (

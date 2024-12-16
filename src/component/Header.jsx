@@ -95,6 +95,14 @@ const Header = ({ isScrolled }) => {
           >
             Contact
           </Link>
+          {data && (
+            <Link
+              to="/orders"
+              className="text-black hover:text-darkGreen hover:underline font-semibold text-xl xl:text-xl"
+            >
+              My Orders
+            </Link>
+          )}
         </nav>
 
         {/* Login Button (Far Right) */}

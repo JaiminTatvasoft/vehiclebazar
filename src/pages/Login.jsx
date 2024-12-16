@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
@@ -7,6 +7,14 @@ import { userLogin } from "../redux/userSlice"; // Assuming this action is corre
 
 const Login = () => {
   const dispatch = useDispatch();
+  const [passwordStrength, setPasswordStrength] = useState({
+    length: false,
+    lowercase: false,
+    number: false,
+    symbol: false,
+    uppercase: false,
+  });
+  const [showPasswordHint, setShowPasswordHint] = useState(false);
 
   // Yup Validation Schema
   const validationSchema = Yup.object({
@@ -14,7 +22,14 @@ const Login = () => {
       .email("Invalid email address")
       .required("Email is required"),
     password: Yup.string()
-      .min(5, "Password must be at least 5 characters")
+      .min(8, "Password must be at least 8 characters")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character"
+      )
       .required("Password is required"),
   });
 
@@ -31,6 +46,28 @@ const Login = () => {
       formik.resetForm(); // Reset the form after submission
     },
   });
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+
+    // Check password conditions
+    setPasswordStrength({
+      length: password.length >= 8,
+      lowercase: /[a-z]/.test(password),
+      number: /[0-9]/.test(password),
+      symbol: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      uppercase: /[A-Z]/.test(password),
+    });
+
+    formik.handleChange(e);
+  };
+
+  const allConditionsMet =
+    passwordStrength.length &&
+    passwordStrength.lowercase &&
+    passwordStrength.number &&
+    passwordStrength.symbol &&
+    passwordStrength.uppercase;
 
   return (
     <>
@@ -80,13 +117,76 @@ const Login = () => {
                 className="block text-sm font-poppins font-medium text-darkGreen"
               >
                 Password
+                <span
+                  className={`ms-2 font-bold text-lg ${
+                    allConditionsMet ? "text-green-500" : "text-red-600"
+                  }`}
+                  onMouseEnter={() => setShowPasswordHint(true)}
+                  onMouseLeave={() => setShowPasswordHint(false)}
+                >
+                  ?
+                </span>
               </label>
+
+              {/* Password Hint Dialog */}
+              {showPasswordHint && (
+                <div className="absolute z-10 mt-2 p-4 bg-white shadow-lg rounded-lg border border-gray-300 text-sm text-gray-600 w-64">
+                  <ul>
+                    <li
+                      className={`${
+                        passwordStrength.length
+                          ? "text-green-500"
+                          : "text-red-600"
+                      }`}
+                    >
+                      - At least 8 characters
+                    </li>
+                    <li
+                      className={`${
+                        passwordStrength.lowercase
+                          ? "text-green-500"
+                          : "text-red-600"
+                      }`}
+                    >
+                      - At least one lowercase letter
+                    </li>
+                    <li
+                      className={`${
+                        passwordStrength.number
+                          ? "text-green-500"
+                          : "text-red-600"
+                      }`}
+                    >
+                      - At least one number
+                    </li>
+                    <li
+                      className={`${
+                        passwordStrength.symbol
+                          ? "text-green-500"
+                          : "text-red-600"
+                      }`}
+                    >
+                      - At least one special character
+                    </li>
+                    <li
+                      className={`${
+                        passwordStrength.uppercase
+                          ? "text-green-500"
+                          : "text-red-600"
+                      }`}
+                    >
+                      - At least one uppercase letter
+                    </li>
+                  </ul>
+                </div>
+              )}
+
               <input
                 id="password"
                 name="password"
                 type="password"
                 value={formik.values.password}
-                onChange={formik.handleChange}
+                onChange={handlePasswordChange}
                 onBlur={formik.handleBlur}
                 className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
                 placeholder="Enter your password"

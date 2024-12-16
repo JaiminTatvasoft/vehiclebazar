@@ -5,6 +5,10 @@ import userReducer from "./userSlice";
 import searchReducer from "./SearchSlice";
 import snackbarReducer from "./snackbarSlice";
 import comparisionReducer from "./comparisionSlice";
+import bookingReducer from "./bookingSlice";
+import checkoutReducer from "./checkoutSlice";
+import ordersReducer from "./ordersSlice";
+import citiesReducer from "./citiesSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
@@ -38,6 +42,26 @@ const comparisionPersistConfig = {
   storage,
 };
 
+const bookingPersistConfig = {
+  key: "booking",
+  storage,
+};
+
+const checkoutPersistConfig = {
+  key: "checkout",
+  storage,
+};
+
+const ordersPersistConfig = {
+  key: "orders",
+  storage,
+};
+
+const citiesPersistConfig = {
+  key: "cities",
+  storage,
+};
+
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const persistedSearchReducer = persistReducer(
   searchPersistConfig,
@@ -63,6 +87,26 @@ const persistedComparisionReducer = persistReducer(
   comparisionReducer
 );
 
+const persistedBookingReducer = persistReducer(
+  bookingPersistConfig,
+  bookingReducer
+);
+
+const persistedCheckoutReducer = persistReducer(
+  checkoutPersistConfig,
+  checkoutReducer
+);
+
+const persistedOrdersReducer = persistReducer(
+  ordersPersistConfig,
+  ordersReducer
+);
+
+const persistedCitiesReducer = persistReducer(
+  citiesPersistConfig,
+  citiesReducer
+);
+
 const store = configureStore({
   reducer: {
     users: persistedUserReducer,
@@ -71,6 +115,10 @@ const store = configureStore({
     search: persistedSearchReducer,
     snack: persistedSnackbarReducer,
     comparisions: persistedComparisionReducer,
+    booking: persistedBookingReducer,
+    checkout: persistedCheckoutReducer,
+    orders: persistedOrdersReducer,
+    cities: persistedCitiesReducer,
   },
 });
 

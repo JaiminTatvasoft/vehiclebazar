@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import Checkout from "./pages/Checkout";
 import Return from "./pages/Return";
 import SnackbarNotification from "./component/SnackbarNotification";
+import MyOrders from "./pages/MyOrders";
 
 const appRouter = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/return",
         element: <Return />,
+      },
+      {
+        path: "/orders",
+        element: <MyOrders />,
       },
     ],
   },

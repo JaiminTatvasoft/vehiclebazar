@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
-import axios from "axios";
 import { showSnackbar } from "../redux/snackbarSlice";
+import { checkOrderExistence } from "../redux/bookingSlice";
 
 const BookCar = () => {
   const navigate = useNavigate();
@@ -39,34 +39,35 @@ const BookCar = () => {
           noOfDays: `${duration.diffInDays} Days and ${duration.diffInHours} hours`,
           startDate: pickUpDate,
           endDate: returnDate,
+          pickUpLocation: city,
+          dropLocation: city,
           totalPrice: refundableDeposit + rentalCharges,
         },
         shippingDetail: {
           customerName: data.name,
           email: data.email,
-          pickUpLocation: city,
-          dropLocation: city,
-          pickUpDate: pickUp.formattedDate,
-          pickUpTime: pickUp.formattedTime,
-          returnDate: returnInfo.formattedDate,
-          returnTime: returnInfo.formattedTime,
         },
       };
       try {
-        const response = await axios.get(
-          `http://localhost:3010/orders/check-order-existence?u_id=${data.id}&p_id=${vehicle._id}&startDate=${pickUpDate}&endDate=${returnDate}`
-        );
-        console.log(response.data);
-        if (response.data === true) {
-          dispatch(
-            showSnackbar({
-              message: "Vehicle Already Registered",
-              severity: "error",
-            })
-          );
-        } else {
-          navigate("/checkout", { state: { resBody } });
-        }
+        dispatch(
+          checkOrderExistence({
+            userId: data.id,
+            vehicleId: vehicle._id,
+            startDate: pickUpDate,
+            endDate: returnDate,
+          })
+        ).then((result) => {
+          if (result.payload === true) {
+            dispatch(
+              showSnackbar({
+                message: "Vehicle Already Registered",
+                severity: "error",
+              })
+            );
+          } else {
+            navigate("/checkout", { state: { resBody } });
+          }
+        });
       } catch (err) {
         console.error("Error fetching order existence:", err);
       }
