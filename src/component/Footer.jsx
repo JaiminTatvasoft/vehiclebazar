@@ -10,16 +10,27 @@ const Footer = () => {
             {/* About Section */}
             <div className="text-white">
               <div className="mb-4">
-                <img src={require("../assets/avatar.png")} alt="Add Logo" className="w-10" />
+                <img
+                  src={require("../assets/footer-logo.png")}
+                  alt="Add Logo"
+                  className="w-28"
+                />
               </div>
               <div className="text-lg mt-5 text-white font-poppins">
                 Find Your{" "}
-                <span className="text-yellow-300 text-xl font-extrabold">Dream </span> Car
-                Today
+                <span className="text-yellow-300 text-xl font-extrabold">
+                  Dream{" "}
+                </span>{" "}
+                Car Today
                 <br />
                 Explore our wide range of vehicles that{" "}
-                <span className="text-yellow-300 text-xl font-extrabold">fit </span> your needs.{" "}
-                <span className="text-yellow-300 text-xl font-extrabold">Start </span>
+                <span className="text-yellow-300 text-xl font-extrabold">
+                  fit{" "}
+                </span>{" "}
+                your needs.{" "}
+                <span className="text-yellow-300 text-xl font-extrabold">
+                  Start{" "}
+                </span>
                 your journey now!
               </div>
               <div className="flex mt-8 flex-wrap items-center justify-center sm:justify-between">
@@ -68,10 +79,7 @@ const Footer = () => {
               </h3>
               <ul className="">
                 <li className="mt-4">
-                  <Link
-                    className="text-white hover:text-gray-300"
-                    to="/deals"
-                  >
+                  <Link className="text-white hover:text-gray-300" to="/deals">
                     Deals
                   </Link>
                 </li>
@@ -84,10 +92,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li className="mt-4">
-                  <Link
-                    className="text-white hover:text-gray-300"
-                    to="/faqs"
-                  >
+                  <Link className="text-white hover:text-gray-300" to="/faqs">
                     FAQs
                   </Link>
                 </li>
@@ -117,26 +122,17 @@ const Footer = () => {
               </h3>
               <ul className="">
                 <li className="mt-4">
-                  <Link
-                    className="text-white hover:text-gray-300"
-                    to="/"
-                  >
+                  <Link className="text-white hover:text-gray-300" to="/">
                     Home
                   </Link>
                 </li>
                 <li className="mt-4">
-                  <Link
-                    className="text-white hover:text-gray-300"
-                    to="/about"
-                  >
+                  <Link className="text-white hover:text-gray-300" to="/about">
                     About
                   </Link>
                 </li>
                 <li className="mt-4">
-                  <Link
-                    className="text-white hover:text-gray-300"
-                    to="/blog"
-                  >
+                  <Link className="text-white hover:text-gray-300" to="/blog">
                     Blogs
                   </Link>
                 </li>
