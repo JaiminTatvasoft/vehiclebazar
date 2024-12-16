@@ -16,6 +16,7 @@ import Checkout from "./pages/Checkout";
 import Return from "./pages/Return";
 import SnackbarNotification from "./component/SnackbarNotification";
 import MyOrders from "./pages/MyOrders";
+import OrderDetail from "./pages/OrderDetail";
 
 const appRouter = createBrowserRouter([
   {
@@ -52,18 +53,22 @@ const appRouter = createBrowserRouter([
         path: "/orders",
         element: <MyOrders />,
       },
+      {
+        path: "/orderdetail",
+        element: <OrderDetail />,
+      },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={appRouter} />
-      </PersistGate>
-      <SnackbarNotification />
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RouterProvider router={appRouter} />
+    </PersistGate>
+    <SnackbarNotification />
+  </Provider>
+  // </React.StrictMode>
 );

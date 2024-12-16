@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearch } from "../redux/SearchSlice";
-import { fetchCities } from "../redux/citiesSlice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ const SearchBox = () => {
   const [location, setLocation] = useState(city || "");
   const [pickupDateTime, setPickupDateTime] = useState(pickUpDate || "");
   const [returnDateTime, setReturnDateTime] = useState(returnDate || "");
-
 
   const currentDateTime = new Date();
 
@@ -33,10 +31,6 @@ const SearchBox = () => {
       })
     );
   };
-
-  useEffect(() => {
-    dispatch(fetchCities()); // Fetch cities on component mount
-  }, [dispatch]);
 
   if (loading) {
     return <div>Loading cities...</div>;
@@ -64,7 +58,7 @@ const SearchBox = () => {
             onChange={(e) => setLocation(e.target.value)}
             className="w-[210px] px-3 py-2 border border-mediumGreen rounded-lg focus:outline-none focus:ring-2 focus:ring-darkGreen text-textcolor"
           >
-            {/* <option value="">{location ? location : "Select a city"}</option> */}
+            <option value="">{"Select a city"}</option>
             {locations.map((city, index) => (
               <option key={index} value={city}>
                 {city}

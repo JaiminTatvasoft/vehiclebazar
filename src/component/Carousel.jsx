@@ -3,6 +3,7 @@ import { fetchVehicles } from "../redux/vehicleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateSearch } from "../redux/SearchSlice";
+import { fetchCities } from "../redux/citiesSlice";
 
 const Carousel = () => {
   const slides = [
@@ -40,6 +41,10 @@ const Carousel = () => {
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [slides.length]);
+
+  useEffect(() => {
+    dispatch(fetchCities()); // Fetch cities on component mount
+  }, [dispatch]);
 
   // Function to handle Pickup Date validation (greater than or equal to current date)
   const isPickUpDateValid = () => {
@@ -93,6 +98,7 @@ const Carousel = () => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       >
+                        <option value="">{"Select a city"}</option>
                         {locations.map((city, index) => (
                           <option key={index} value={city}>
                             {city}

@@ -34,7 +34,7 @@ const VehicleCard = ({ vehicle, onBook }) => {
             {/* 120 kms/day Button */}
             <div
               className={`text-center cursor-pointer ${
-                selectedPackage === 120 ? "bg-blue-100" : ""
+                selectedPackage === 120 ? "bg-lightGreen p-2 rounded-lg" : ""
               }`}
               onClick={() => {
                 setSelectedPackage(120);
@@ -51,7 +51,7 @@ const VehicleCard = ({ vehicle, onBook }) => {
             {/* 240 kms/day Button */}
             <div
               className={`text-center cursor-pointer ${
-                selectedPackage === 240 ? "bg-blue-100" : ""
+                selectedPackage === 240 ? "bg-lightGreen p-2 rounded-lg" : ""
               }`}
               onClick={() => {
                 setSelectedPackage(240);
