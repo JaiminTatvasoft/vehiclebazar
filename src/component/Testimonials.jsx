@@ -5,9 +5,9 @@ const Testimonials = () => {
   const testimonialsRef = useRef(null);
   const { token } = useSelector((state) => state.users);
 
-  const [reviews, setReviews] = useState([]); // State to hold reviews
-  const [loading, setLoading] = useState(true); // Loading state for fetching reviews
-  const [error, setError] = useState(null); // Error state for handling errors during fetch
+  const [reviews, setReviews] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -23,14 +23,14 @@ const Testimonials = () => {
         const data = await response.json();
 
         if (data.success) {
-          setReviews(data.reviews); // Set the fetched reviews in state
+          setReviews(data.reviews); 
         } else {
           setError("Failed to fetch reviews.");
         }
       } catch (err) {
         setError("Error fetching reviews. Please try again later.");
       } finally {
-        setLoading(false); // Set loading to false once the data is fetched
+        setLoading(false); 
       }
     };
 
@@ -53,6 +53,28 @@ const Testimonials = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    let stars = [];
+    for (let i = 1; i <= totalStars; i++) {
+      if (i <= rating) {
+        stars.push(
+          <span key={i} className="text-yellow-500 text-4xl ms-2">
+            ★
+          </span>
+        ); 
+      } else {
+        stars.push(
+          <span key={i} className="text-gray-300 text-4xl ms-2">
+            ★
+          </span>
+        ); 
+      }
+    }
+    return stars;
   };
 
   return (
@@ -119,6 +141,12 @@ const Testimonials = () => {
                     />
                     <div className="text-center font-bold text-xl font-poppins text-darkGreen">
                       {review.username}
+                    </div>
+                  </div>
+                  {/* Render Star Rating */}
+                  <div className="mt-1 mb-4 text-center">
+                    <div className="flex justify-center">
+                      {renderStars(review.rating)} {/* Render the stars */}
                     </div>
                   </div>
                   <p className="text-gray-700 text-base text-center">

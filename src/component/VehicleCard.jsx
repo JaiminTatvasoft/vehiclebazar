@@ -6,7 +6,7 @@ const VehicleCard = ({ vehicle, onBook }) => {
   const [freeKms, setFreeKms] = useState(405);
 
   return (
-    <div className="bg-white border rounded-lg">
+    <div className="bg-white border rounded-lg mb-4 lg:mb-0">
       {/* Vehicle Info Section with Image on the Left and Text on the Right */}
       <div className="flex">
         {/* Vehicle Image */}
@@ -34,7 +34,7 @@ const VehicleCard = ({ vehicle, onBook }) => {
             {/* 120 kms/day Button */}
             <div
               className={`text-center cursor-pointer ${
-                selectedPackage === 120 ? "bg-lightGreen p-2 rounded-lg" : ""
+                selectedPackage === 120 ? "bg-lightGreen p-2 rounded-lg" : "p-2"
               }`}
               onClick={() => {
                 setSelectedPackage(120);
@@ -51,7 +51,7 @@ const VehicleCard = ({ vehicle, onBook }) => {
             {/* 240 kms/day Button */}
             <div
               className={`text-center cursor-pointer ${
-                selectedPackage === 240 ? "bg-lightGreen p-2 rounded-lg" : ""
+                selectedPackage === 240 ? "bg-lightGreen p-2 rounded-lg" : "p-2"
               }`}
               onClick={() => {
                 setSelectedPackage(240);

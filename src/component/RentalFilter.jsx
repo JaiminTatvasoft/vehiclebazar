@@ -65,7 +65,7 @@ const RentalFilter = () => {
   };
 
   return (
-    <div className="gap-6 border rounded-md hidden lg:flex">
+    <div className="gap-6 border rounded-md mx-2 sm:mx-8 mb-12 lg:mb-0 xl:flex">
       {/* Filter Sidebar */}
       <div className="plp-rental-filter-wrapper bg-white p-4 rounded-lg shadow-lg w-full">
         {/* Filter Header */}

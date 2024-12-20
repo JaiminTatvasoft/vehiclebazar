@@ -10,9 +10,9 @@ const RentCar = () => {
       <div className="flex flex-wrap mt-24">
         <SearchBox />
       </div>
-      <div className="px-48">
+      <div className="lg:px-12 xl:px-12 2xl:px-48">
         <nav
-          className="flex bg-white mt-28 text-black py-3 px-5 rounded-lg "
+          className="flex bg-white mx-2 sm:mx-8 xl:mx-0 mt-8 lg:mt-28 text-black py-3 px-2 rounded-lg "
           aria-label="Breadcrumb"
         >
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -54,13 +54,11 @@ const RentCar = () => {
           </ol>
         </nav>
       </div>
-      <div className="flex flex-wrap mt-10 px-48">
-        {/* Rental Filter Component */}
+      <div className="flex flex-wrap mt-4 lg:px-8 xl:px-12 2xl:px-40">
         <div className="w-full lg:w-1/5">
           <RentalFilter />
         </div>
 
-        {/* Vehicle List Component */}
         <div className="w-full lg:w-4/5">
           <VehicleList />
         </div>

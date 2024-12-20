@@ -33,10 +33,10 @@ const componentPersistConfig = {
   storage,
 };
 
-const snackbarPersistConfig = {
-  key: "snackbar",
-  storage,
-};
+// const snackbarPersistConfig = {
+//   key: "snackbar",
+//   storage,
+// };
 
 const comparisionPersistConfig = {
   key: "comparision",
@@ -53,10 +53,10 @@ const checkoutPersistConfig = {
   storage,
 };
 
-const ordersPersistConfig = {
-  key: "orders",
-  storage,
-};
+// const ordersPersistConfig = {
+//   key: "orders",
+//   storage,
+// };
 
 const citiesPersistConfig = {
   key: "cities",
@@ -78,10 +78,10 @@ const persistedComponentReducer = persistReducer(
   componentReducer
 );
 
-const persistedSnackbarReducer = persistReducer(
-  snackbarPersistConfig,
-  snackbarReducer
-);
+// const persistedSnackbarReducer = persistReducer(
+//   snackbarPersistConfig,
+//   snackbarReducer
+// );
 
 const persistedComparisionReducer = persistReducer(
   comparisionPersistConfig,
@@ -98,10 +98,10 @@ const persistedCheckoutReducer = persistReducer(
   checkoutReducer
 );
 
-const persistedOrdersReducer = persistReducer(
-  ordersPersistConfig,
-  ordersReducer
-);
+// const persistedOrdersReducer = persistReducer(
+//   ordersPersistConfig,
+//   ordersReducer
+// );
 
 const persistedCitiesReducer = persistReducer(
   citiesPersistConfig,
@@ -114,14 +114,21 @@ const store = configureStore({
     vehicles: persistedVehicleReducer,
     components: persistedComponentReducer,
     search: persistedSearchReducer,
-    snack: persistedSnackbarReducer,
+    snack: snackbarReducer,
     comparisions: persistedComparisionReducer,
     booking: persistedBookingReducer,
     checkout: persistedCheckoutReducer,
-    orders: persistedOrdersReducer,
+    orders: ordersReducer,
     cities: persistedCitiesReducer,
     reviews: reviewReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"], // Ignore specific actions if needed
+        ignoredPaths: ["register"], // Ignore specific paths in the state
+      },
+    }),
 });
 
 const persistor = persistStore(store);

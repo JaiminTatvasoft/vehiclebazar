@@ -16,7 +16,7 @@ const MyOrders = () => {
   }
 
   return (
-    <div className="pt-28 px-4 py-8">
+    <div className="pt-28 px-4 py-8 lg:px-28 2xl:px-48">
       <h1 className="text-center text-3xl font-bold text-gray-800">
         Orders
       </h1>

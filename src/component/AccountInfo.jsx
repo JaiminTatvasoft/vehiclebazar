@@ -139,13 +139,12 @@ const AccountInfo = ({
           value={formData.password}
           onChange={handlePasswordChange}
           onBlur={handleBlur}
-          className={`mt-2 p-3 w-full border ${
-            errors.password && touched.password
-              ? "border-red-600"
-              : "border-mediumGreen"
-          } rounded-md`}
+          className={`mt-2 p-3 w-full border rounded-md focus:outline-none focus:ring-2 border-mediumGreen ${
+            allConditionsMet ? "focus:ring-darkGreen" : "focus:ring-red-600"
+          }`}
           placeholder="Enter your password"
         />
+
         {errors.password && touched.password && (
           <p className="text-sm text-red-600 mt-2">{errors.password}</p>
         )}

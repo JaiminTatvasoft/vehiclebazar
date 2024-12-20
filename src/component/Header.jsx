@@ -1,29 +1,58 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
+import { updateSearch } from "../redux/SearchSlice";
+import { vehicleRemoved } from "../redux/vehicleSlice";
 
 const Header = ({ isScrolled }) => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data } = useLoadUsers();
+  const navigate = useNavigate();
+
+  // Reference to the mobile menu sidebar
+  const sidebarRef = useRef(null);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev); // Toggle the state for menu visibility
   };
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(vehicleRemoved());
+    dispatch(updateSearch({ location: "", pickUpDate: "", returnDate: "" }));
+    navigate("/");
   };
+
+  // Close the sidebar if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        isMenuOpen
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Adding event listener for click outside
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition duration-300 ${
+      className={`fixed h-auto top-0 left-0 right-0 z-[2] transition duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-screen-3xl px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-1 ">
+      <div className="max-w-screen-3xl h-20 sm:h-auto px-4 lg:px-28 xl:px-36 2xl:px-48 mx-auto flex justify-between items-center py-1">
         {/* Hamburger Menu Button */}
         <button onClick={toggleMenu} className="p-2 rounded-md md:hidden">
           {isMenuOpen ? (
@@ -143,9 +172,12 @@ const Header = ({ isScrolled }) => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 z-40 transition-transform transform ${
+        ref={sidebarRef}
+        className={`fixed top-20 left-0 right-0 bottom-0 max-w-64 z-40 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
+        } ${
+          isScrolled ? "bg-white shadow-md" : "bg-transparent backdrop-blur-sm"
+        }`}
       >
         {/* Menu Items */}
         <ul className="space-y-4 p-6">
@@ -173,15 +205,11 @@ const Header = ({ isScrolled }) => {
           >
             Contact
           </Link>
-          {/* <li>
-            <Link
-              to="/faq"
-              className="block text-darkestGreen"
-              onClick={toggleMenu}
-            >
-              FAQs
+          {data && (
+            <Link to="/orders" className="block text-darkestGreen">
+              Orders
             </Link>
-          </li> */}
+          )}
         </ul>
       </div>
     </header>

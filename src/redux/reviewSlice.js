@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Thunk to handle the async review submission
 export const submitReview = createAsyncThunk(
   "reviews/submitReview",
-  async ({ reviewText, order, token }, { rejectWithValue }) => {
+  async ({ reviewText, order, token, rating }, { rejectWithValue }) => {
     try {
       const response = await fetch("http://localhost:3010/reviews", {
         method: "POST",
@@ -17,6 +17,7 @@ export const submitReview = createAsyncThunk(
           username: order.users.name,
           useremail: order.users.email,
           review: reviewText,
+          rating: rating,
         }),
       });
 

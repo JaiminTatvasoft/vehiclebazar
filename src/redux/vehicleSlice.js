@@ -41,8 +41,26 @@ const vehicleSlice = createSlice({
     vehicles: [],
     loading: false,
     error: null,
+    isVehicleSelected: false,
+    vehicle: {},
+    selectedPackage: 120,
+    freeKms: 0,
   },
-  reducers: {},
+  reducers: {
+    vehicleSelected: (state, action) => {
+      state.isVehicleSelected = true;
+      state.vehicle = action.payload.vehicle;
+      state.selectedPackage = action.payload.selectedPackage;
+      state.freeKms = action.payload.freeKms;
+    },
+    vehicleRemoved: (state) => {
+      state.isVehicleSelected = false;
+      state.vehicle = {};
+      state.selectedPackage = 120;
+      state.freeKms = 0;
+      state.vehicles = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchVehicles.pending, (state) => {
@@ -60,4 +78,5 @@ const vehicleSlice = createSlice({
   },
 });
 
+export const { vehicleSelected, vehicleRemoved } = vehicleSlice.actions;
 export default vehicleSlice.reducer;

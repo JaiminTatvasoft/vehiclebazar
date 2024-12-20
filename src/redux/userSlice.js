@@ -11,7 +11,7 @@ export const createUser = createAsyncThunk(
       const {
         address,
         city,
-        confirmPassword,
+        // confirmPassword,
         contactNo,
         country,
         dob,
@@ -19,7 +19,7 @@ export const createUser = createAsyncThunk(
         gender,
         name,
         password,
-        role,
+        // role,
         state,
         zipCode,
         age,
@@ -101,7 +101,7 @@ export const userLogin = createAsyncThunk(
 const userSlice = createSlice({
   name: "users",
   initialState: {
-    data: {},
+    data: null,
     token: "",
     loading: false,
     error: null,

@@ -1,20 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
 import { showSnackbar } from "../redux/snackbarSlice";
 import { checkOrderExistence } from "../redux/bookingSlice";
+import { vehicleSelected } from "../redux/vehicleSlice";
 
 const BookCar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const { vehicle, selectedPackage, freeKms } = location.state || {};
+  const { vehicle, selectedPackage, freeKms } =
+    useSelector((state) => state.vehicles) || {};
 
   const { data } = useLoadUsers();
 
   const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
+
+  dispatch(vehicleSelected({ vehicle, selectedPackage, freeKms }));
 
   const pickUp = useDateTimeFormat(pickUpDate);
   const returnInfo = useDateTimeFormat(returnDate);
@@ -26,7 +29,7 @@ const BookCar = () => {
   );
   let rentalCharges = vehicle.rentalChargesPerDay * finalDuration;
   selectedPackage === 120
-    ? (rentalCharges = rentalCharges)
+    ? (rentalCharges = rentalCharges * 1)
     : (rentalCharges = rentalCharges * 1.25);
 
   const handleProceed = async () => {
@@ -76,10 +79,10 @@ const BookCar = () => {
     }
   };
   return (
-    <div className="mt-24 px-48">
+    <div className="mt-28 lg:px-8 2xl:px-20">
       <div>
         <nav
-          className="flex text-black py-3 px-5 rounded-lg mb-2"
+          className="flex text-black py-3 mx-2 sm:mx-16 lg:mx-0 px-5 rounded-lg mb-2"
           aria-label="Breadcrumb"
         >
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -147,7 +150,7 @@ const BookCar = () => {
       {/* Car Details Section */}
       <div className="flex flex-wrap lg:flex-nowrap">
         {/* Left Side - Car Image & Details */}
-        <div className="mt-10 mb-20 lg:w-2/3 w-full pr-4">
+        <div className="mt-4 mb-20 lg:w-2/3 w-full pr-4 mx-2 sm:mx-16 lg:mx-0">
           {/* Car Header */}
           <div className="">
             <h1 className="text-xl py-2 ps-4 rounded-t-lg font-semibold bg-darkGreen">
@@ -327,7 +330,7 @@ const BookCar = () => {
         </div>
 
         {/* Right Side - Pickup and Drop Details */}
-        <div className="mt-10 mb-20 lg:w-1/3 w-full pl-4">
+        <div className="mt-10 mb-20 lg:w-1/3 w-full pl-4 mx-2 sm:mx-16 lg:mx-0">
           <div className="text-xl font-semibold text-center">
             Car Pickup & Drop Location
           </div>
@@ -343,6 +346,7 @@ const BookCar = () => {
                 className="w-full p-2 border rounded"
                 rows="3"
                 value={`Hub Location: ${city}, Date: ${pickUp.formattedDate}, Time: ${pickUp.formattedTime}`}
+                readOnly
               ></textarea>
             </div>
 
@@ -357,6 +361,7 @@ const BookCar = () => {
                 className="w-full p-2 border rounded"
                 rows="3"
                 value={`Drop Location: ${city}, Date: ${returnInfo.formattedDate}, Time: ${returnInfo.formattedTime}`}
+                readOnly
               ></textarea>
             </div>
           </div>

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { userLogin } from "../redux/userSlice"; // Assuming this action is correctly set up
 
 const Login = () => {
   const dispatch = useDispatch();
+  const { isVehicleSelected } = useSelector((state) => state.vehicles);
+  const navigate = useNavigate();
   const [passwordStrength, setPasswordStrength] = useState({
     length: false,
     lowercase: false,
@@ -44,6 +46,11 @@ const Login = () => {
       // Dispatching login action with form data
       dispatch(userLogin({ formData: values }));
       formik.resetForm(); // Reset the form after submission
+      if (isVehicleSelected) {
+        navigate("/bookcar");
+      } else {
+        navigate("/");
+      }
     },
   });
 
@@ -188,9 +195,14 @@ const Login = () => {
                 value={formik.values.password}
                 onChange={handlePasswordChange}
                 onBlur={formik.handleBlur}
-                className="mt-2 p-3 w-full border border-mediumGreen rounded-md focus:outline-none focus:ring-2 focus:ring-darkGreen"
+                className={`mt-2 p-3 w-full border rounded-md focus:outline-none focus:ring-2 border-mediumGreen ${
+                  allConditionsMet
+                    ? "focus:ring-darkGreen"
+                    : "focus:ring-red-600"
+                }`}
                 placeholder="Enter your password"
               />
+
               {formik.touched.password && formik.errors.password && (
                 <div className="text-red-600 text-xs mt-2">
                   {formik.errors.password}
