@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { userLogin } from "../redux/userSlice"; // Assuming this action is correctly set up
+import { userLogin } from "../redux/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ const Login = () => {
   });
   const [showPasswordHint, setShowPasswordHint] = useState(false);
 
-  // Yup Validation Schema
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email address")
@@ -35,21 +34,29 @@ const Login = () => {
       .required("Password is required"),
   });
 
-  // Formik setup
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Dispatching login action with form data
-      dispatch(userLogin({ formData: values }));
-      formik.resetForm(); // Reset the form after submission
-      if (isVehicleSelected) {
-        navigate("/bookcar");
-      } else {
-        navigate("/");
+    onSubmit: async (values) => {
+      try {
+        const resultAction = await dispatch(userLogin({ formData: values }));
+
+        if (userLogin.rejected.match(resultAction)) {
+          console.log("Login failed:", resultAction.error.message);
+        } else {
+          formik.resetForm();
+
+          if (!isVehicleSelected) {
+            navigate("/");
+          } else {
+            navigate("/bookcar");
+          }
+        }
+      } catch (error) {
+        console.error("An unexpected error occurred: ", error.message);
       }
     },
   });
@@ -57,7 +64,6 @@ const Login = () => {
   const handlePasswordChange = (e) => {
     const password = e.target.value;
 
-    // Check password conditions
     setPasswordStrength({
       length: password.length >= 8,
       lowercase: /[a-z]/.test(password),
@@ -81,7 +87,7 @@ const Login = () => {
       <div
         className="flex items-center justify-center min-h-screen bg-white py-10 md:items-start md:justify-end object-fill"
         style={{
-          backgroundImage: `url(${require("../assets/new-login-bkg.jpg")})`, // Add your image path here
+          backgroundImage: `url(${require("../assets/new-login-bkg.jpg")})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDateTimeFormat, useDuration } from "../utils/useDateTimeFormat";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +17,9 @@ const BookCar = () => {
 
   const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
 
-  dispatch(vehicleSelected({ vehicle, selectedPackage, freeKms }));
+  useEffect(() => {
+    dispatch(vehicleSelected({ vehicle, selectedPackage, freeKms }));
+  }, [dispatch, vehicle, selectedPackage, freeKms]);
 
   const pickUp = useDateTimeFormat(pickUpDate);
   const returnInfo = useDateTimeFormat(returnDate);

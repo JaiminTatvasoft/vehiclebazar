@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { fetchVehicles } from "../redux/vehicleSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { updateSearch } from "../redux/SearchSlice";
 import { fetchCities } from "../redux/citiesSlice";
-import CarouselSlide from "./CarouselSlide"; // New Slide Component
+import CarouselSlide from "./CarouselSlide";
 
 const Carousel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const locationnn = useLocation();
 
   const { city, pickUpDate, returnDate } = useSelector((state) => state.search);
   const { locations } = useSelector((state) => state.cities);
+  const loggedOut = locationnn.state?.loggedOut;
 
   const [location, setLocation] = useState(city || "");
   const [pickUpDateTime, setPickUpDateTime] = useState(pickUpDate || "");
   const [returnDateTime, setReturnDateTime] = useState(returnDate || "");
 
-  console.log(location, pickUpDateTime, returnDateTime);
+  useEffect(() => {
+    if (loggedOut) {
+      setLocation("");
+      setPickUpDateTime("");
+      setReturnDateTime("");
+    }
+  }, [loggedOut]); // Only run when loggedOut changes
 
-  // Fetch cities when component mounts
   useEffect(() => {
     dispatch(fetchCities());
   }, [dispatch]);

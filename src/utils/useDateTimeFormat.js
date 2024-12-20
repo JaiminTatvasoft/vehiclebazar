@@ -1,5 +1,11 @@
 export const useDateTimeFormat = (date) => {
+  // Ensure the date is valid before proceeding
   const unFormattedDate = new Date(date);
+
+  if (isNaN(unFormattedDate.getTime())) {
+    // If the date is invalid, return a default value or handle the error
+    return { formattedDate: "Invalid Date", formattedTime: "Invalid Time" };
+  }
 
   const formatter = new Intl.DateTimeFormat("en-US", {
     hour: "2-digit",

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoadUsers } from "../utils/customHooks/useLoadUsers";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
@@ -11,6 +11,7 @@ const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data } = useLoadUsers();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Reference to the mobile menu sidebar
   const sidebarRef = useRef(null);
@@ -23,7 +24,12 @@ const Header = ({ isScrolled }) => {
     dispatch(logout());
     dispatch(vehicleRemoved());
     dispatch(updateSearch({ location: "", pickUpDate: "", returnDate: "" }));
-    navigate("/");
+
+    if (location.pathname === "/") {
+      navigate("/", { state: { loggedOut: true } });
+    } else {
+      navigate("/");
+    }
   };
 
   // Close the sidebar if clicked outside

@@ -87,6 +87,8 @@ export const userLogin = createAsyncThunk(
 
       return { user: decodedData, access_token: token };
     } catch (error) {
+      console.log("here");
+      
       dispatch(
         showSnackbar({
           message: error.response?.data?.message || "Login failed",
